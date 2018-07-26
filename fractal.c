@@ -2,6 +2,14 @@
 #include <stdio.h>
 #include "matrix.h"
 
+int main()
+{
+	struct matrix *mat1 = matrix_init(4, 3);
+	struct sp_matrix *sp_mat1 = sp_matrix_init(4, 3);
+
+	return 0;
+}
+
 // CREATION DES MATRICES // INIT // // //
 
 struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
