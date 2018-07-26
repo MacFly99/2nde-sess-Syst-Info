@@ -10,7 +10,7 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 	struct matrix *mat = (struct matrix *)malloc(sizeof(struct matrix));
 	mat->nlines = nlines;
 	mat->ncols = ncols;
-	mat->elems = double elems[nlines][ncols];
+	//mat->elems = double elems[nlines][ncols];
 
 	//Initialisation du tableau pour que toutes les valeurs valent 0.
 	int i;
