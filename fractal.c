@@ -13,9 +13,11 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 	mat->elems = double[nlines][ncols];
 
 	//Initialisation du tableau pour que toutes les valeurs valent 0.
-	for (int i = 0; i < nlines; i++)
+	int i;
+	for (i = 0; i < nlines; i++)
 	{
-		for (int j = 0; j < ncols; j++)
+		int j;
+		for (j = 0; j < ncols; j++)
 		{
 			mat->elems[i][j] = 0;
 		}
@@ -563,9 +565,11 @@ struct matrix *matrix_add(const struct matrix *m1, const struct matrix *m2)
 		return NULL;
 	}
 	struct matrix *mat = matrix_init(m1->nlines, m2->ncols);
-	for (int i = 0; i < m1->nlines; i++)
+	int i;
+	for (i = 0; i < m1->nlines; i++)
 	{
-		for (int j = 0; j < m1->nlines; j++)
+		int j;
+		for (j = 0; j < m1->nlines; j++)
 		{
 			double val1 = matrix_get(m1, i, j);
 			double val2 = matrix_get(m2, i, j);
@@ -598,9 +602,11 @@ struct sp_matrix *sp_matrix_add(const struct sp_matrix *m1, const struct sp_matr
 	}
 
 	struct sp_matrix *mat = sp_matrix_init(prec, m1->nlines, m2->ncols);
-	for (int i = 0; i < m1->nlines; i++)
+	int i;
+	for (i = 0; i < m1->nlines; i++)
 	{
-		for (int j = 0; j < m1->nlines; j++)
+		int j;
+		for (j = 0; j < m1->nlines; j++)
 		{
 			double val1 = sp_matrix_get(m1, i, j);
 			double val2 = sp_matrix_get(m2, i, j);
@@ -621,9 +627,11 @@ struct sp_matrix *sp_matrix_add(const struct sp_matrix *m1, const struct sp_matr
 struct matrix *matrix_transpose(const struct matrix *matrix)
 {
 	struct matrix *mat = matrix_init(matrix->ncols, matrix->nlines);
-	for (int i = 0; i < matrix->nlines ; i++)
+	int i;
+	for (i = 0; i < matrix->nlines ; i++)
 	{
-		for (int j = 0; j < matrix->ncols;j++)
+		int j;
+		for (j = 0; j < matrix->ncols;j++)
 		{
 			double val = matrix_get(matrix, i, j);
 
@@ -640,9 +648,11 @@ struct matrix *matrix_transpose(const struct matrix *matrix)
 struct sp_matrix *sp_matrix_transpose(const struct sp_matrix *matrix)
 {
 	struct matrix *mat = sp_matrix_init(matrix->precision,matrix->ncols, matrix->nlines);
-	for (int i = 0; i < matrix->nlines; i++)
+	int i;
+	for (i = 0; i < matrix->nlines; i++)
 	{
-		for (int j = 0; j < m1->ncols; j++)
+		int j;
+		for (j = 0; j < m1->ncols; j++)
 		{
 			double val = sp_matrix_get(matrix, i, j);
 
@@ -666,12 +676,15 @@ struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 	}
 	struct matrix *mat = matrix_init(m1->nlines, m2->ncols);
 		
-	for (int i = 0; i < m1->nlines; i++)
+	int i;
+	for (i = 0; i < m1->nlines; i++)
 	{
-		for (int j = 0; j < m2->ncols; j++)
+		int j;
+		for (j = 0; j < m2->ncols; j++)
 		{
+			int k;
 			double res = 0;
-			for (int k = 0; k < m1->ncols; k++)
+			for (k = 0; k < m1->ncols; k++)
 			{
 				double prod1 = matrix_get(m1, i, k);
 				double prod2 = matrix_get(m2, k, j);
@@ -708,12 +721,15 @@ struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_mat
 
 	struct sp_matrix *mat = sp_matrix_init(prec,m1->nlines, m2->ncols);
 
-	for (int i = 0; i < m1->nlines; i++)
+	int i;
+	for (i = 0; i < m1->nlines; i++)
 	{
-		for (int j = 0; j < m2->ncols; j++)
+		int j;
+		for (j = 0; j < m2->ncols; j++)
 		{
+			int k;
 			double res = 0;
-			for (int k = 0; k < m1->ncols; k++)
+			for (k = 0; k < m1->ncols; k++)
 			{
 				double prod1 = sp_matrix_get(m1, i, k);
 				double prod2 = sp_matrix_get(m2, k, j);
@@ -737,9 +753,11 @@ struct sp_matrix *matrix_to_sp_matrix(const struct matrix *matrix, double precis
 {
 	struct sp_matrix *mat = sp_matrix_init(precision, matrix->nlines, matrix->ncols);
 
-	for (int i = 0; i < matrix->nlines; i++)
+	int i;
+	for (i = 0; i < matrix->nlines; i++)
 	{
-		for (int j = 0; j < matrix->ncols; j++)
+		int j;
+		for (j = 0; j < matrix->ncols; j++)
 		{
 			if (matrix[i][j] != 0)
 			{
@@ -793,9 +811,11 @@ int matrix_save(const struct matrix *matrix, char *path)
 
 	fprintf(fi, "%d %d", matrix->nlines, matrix->ncols);
 
-	for (int i = 0; i < matrix->nlines; i++)
+	int i;
+	for (i = 0; i < matrix->nlines; i++)
 	{
-		for (int j = 0; j < matrix->ncols; j++)
+		int j;
+		for (j = 0; j < matrix->ncols; j++)
 		{
 			fprintf(fi, "%f", matrix->elems[i][j]);
 		}
@@ -852,9 +872,11 @@ struct matrix *matrix_load(char *path)
 	}
 	struct matrix *mat = matrix_init(nlines,ncols);
 
-	for (int i = 0; i < nlines; i++)
+	int i;
+	for (i = 0; i < nlines; i++)
 	{
-		for (int j = 0; j < ncols; j++)
+		int j;
+		for (j = 0; j < ncols; j++)
 		{
 			int res2;
 			double val;
