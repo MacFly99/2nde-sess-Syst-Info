@@ -10,7 +10,7 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 	struct matrix *mat = (struct matrix *)malloc(sizeof(struct matrix));
 	mat->nlines = nlines;
 	mat->ncols = ncols;
-	mat->elems = double[nlines][ncols];
+	mat->elems = double elems[nlines][ncols];
 
 	//Initialisation du tableau pour que toutes les valeurs valent 0.
 	int i;
@@ -94,7 +94,7 @@ void sp_matrix_free(struct sp_matrix *matrix)
 				}
 				free(nextPointeurCo);
 			}
-			free(pointeurLi)
+			free(pointeurLi);
 			pointeurLi = nextPointeurLi;
 			nextPointeurLi = nextPointeurLi->next;
 		}
@@ -647,12 +647,12 @@ struct matrix *matrix_transpose(const struct matrix *matrix)
 
 struct sp_matrix *sp_matrix_transpose(const struct sp_matrix *matrix)
 {
-	struct matrix *mat = sp_matrix_init(matrix->precision,matrix->ncols, matrix->nlines);
+	struct sp_matrix *mat = sp_matrix_init(matrix->precision,matrix->ncols, matrix->nlines);
 	int i;
 	for (i = 0; i < matrix->nlines; i++)
 	{
 		int j;
-		for (j = 0; j < m1->ncols; j++)
+		for (j = 0; j < matrix->ncols; j++)
 		{
 			double val = sp_matrix_get(matrix, i, j);
 
@@ -759,9 +759,9 @@ struct sp_matrix *matrix_to_sp_matrix(const struct matrix *matrix, double precis
 		int j;
 		for (j = 0; j < matrix->ncols; j++)
 		{
-			if (matrix[i][j] != 0)
+			if (matrix->elems[i][j] != 0)
 			{
-				int err = sp_matrix_set(mat, i, j, matrix[i][j]);
+				int err = sp_matrix_set(mat, i, j, matrix->elems[i][j]);
 				if (err)
 				{
 					return NULL;
