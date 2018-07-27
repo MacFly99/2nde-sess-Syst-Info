@@ -5,7 +5,8 @@
 int main()
 {
 	struct matrix *mat1 = matrix_init(4, 3);
-	struct sp_matrix *sp_mat1 = sp_matrix_init(4, 3);
+	struct sp_matrix *sp_mat1 = sp_matrix_init(0.001, 4, 3);
+	printf("Coucou");
 
 	return 0;
 }
