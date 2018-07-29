@@ -2,13 +2,19 @@
 #include <stdio.h>
 #include "matrix.h"
 
-int main()
-{
+void main() 
+{ 
+	printf("Création des matrices \n");
 	struct matrix *mat1 = matrix_init(4, 3);
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.001, 4, 3);
-	printf("Coucou");
-
-	return 0;
+	printf("Assignation de valeurs");
+	int err = matrix_set(mat1, 1, 2, 17);
+	printf("assignation de la première valeur dans mat1: %d \n", err);
+	err = 0;
+	err = matrix_set(sp_mat1, 1, 2, 17.17);
+	printf("assignation de la première valeur dans sp_mat1: %d \n", err);
+	
+	return;
 }
 
 // CREATION DES MATRICES // INIT // // //
