@@ -26,12 +26,16 @@ void main()
 
 struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 {
+	printf("1\n");
 	//Allocation de la memoire et initialisation des variables selon les arguments.
 	struct matrix *mat = (struct matrix *)malloc(sizeof(struct matrix));
+	printf("2\n");
 	mat->nlines = nlines;
+	printf("3\n");
 	mat->ncols = ncols;
+	printf("4\n");
 	double ele[nlines][ncols];
-
+	printf("5\n");
 	//Initialisation du tableau pour que toutes les valeurs valent 0.
 	int i;
 	for (i = 0; i < nlines; i++)
@@ -39,6 +43,7 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 		int j;
 		for (j = 0; j < ncols; j++)
 		{
+			printf("%d %d \n", i, j);
 			ele[i][j] = 0;
 		}
 	}
