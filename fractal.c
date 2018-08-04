@@ -29,7 +29,7 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 	struct matrix *mat = (struct matrix *)malloc(sizeof(struct matrix));
 	mat->nlines = nlines;
 	mat->ncols = ncols;
-	//mat->elems = double elems[nlines][ncols];
+	double ele[nlines][ncols];
 
 	//Initialisation du tableau pour que toutes les valeurs valent 0.
 	int i;
@@ -38,9 +38,10 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 		int j;
 		for (j = 0; j < ncols; j++)
 		{
-			mat->elems[i][j] = 0;
+			mat->ele[i][j] = 0;
 		}
 	}
+	mat->elems = ele;
 
 	return mat;
 }
