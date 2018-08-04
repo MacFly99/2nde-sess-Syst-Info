@@ -6,6 +6,7 @@ void main()
 { 
 	printf("Création des matrices \n");
 	struct matrix *mat1 = matrix_init(4, 3);
+	printf("1");
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.001, 4, 3);
 	
 	printf("Assignation de valeurs");
@@ -38,7 +39,7 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 		int j;
 		for (j = 0; j < ncols; j++)
 		{
-			mat->ele[i][j] = 0;
+			ele[i][j] = 0;
 		}
 	}
 	mat->elems = ele;
