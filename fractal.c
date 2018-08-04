@@ -47,8 +47,9 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 			ele[i][j] = 0;
 		}
 	}
+	printf("6\n");
 	mat->elems = ele;
-
+	printf("7\n");
 	return mat;
 }
 
