@@ -78,6 +78,10 @@ void sp_matrix_free(struct sp_matrix *matrix)
 {
 	if (matrix == NULL)
 	{
+		return;
+	}
+	if (matrix->lines == NULL)
+	{
 		free(matrix);
 		return;
 	}
@@ -100,6 +104,7 @@ void sp_matrix_free(struct sp_matrix *matrix)
 			}
 			free(nextPointeurCo);
 		}
+		free(pointeurLi);
 	}
 	else
 	{
