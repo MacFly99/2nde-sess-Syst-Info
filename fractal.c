@@ -12,7 +12,7 @@ void main()
 	int err = matrix_set(mat1, 1, 2, 17);
 	printf("assignation de la première valeur dans mat1: %d \n", err);
 	err = 0;
-	err = matrix_set(sp_mat1, 1, 2, 17.17);
+	err = sp_matrix_set(sp_mat1, 1, 2, 17.17);
 	printf("assignation de la première valeur dans sp_mat1: %d \n", err);
 	
 	printf("libération des matrices\n");
