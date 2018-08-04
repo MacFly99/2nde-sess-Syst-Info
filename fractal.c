@@ -6,11 +6,11 @@ void main()
 { 
 	printf("Création des matrices \n");
 	//struct matrix *mat1 = matrix_init(4, 3);
-	printf("1");
+
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.001, 4, 3);
 	
 	printf("Assignation de valeurs");
-	int err;
+	int err=0;
 	//err = matrix_set(mat1, 1, 2, 17);
 	printf("assignation de la première valeur dans mat1: %d \n", err);
 	err = 0;
@@ -240,7 +240,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 
 							return 0;
 						}
-						return -1;
+						return -2;
 					}
 					else
 					{
@@ -386,7 +386,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 
 							return 0;
 						}
-						return -1;
+						return -3;
 					}
 					else
 					{
@@ -519,7 +519,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 		}
 
 	}
-	return -1;
+	return -4;
 }
 
 // RECUPERATION DE LA VALEUR D'UN ELEMENT D'UNE MATRICE // GET // // //
