@@ -171,6 +171,8 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 			ligne->elems = element;
 			ligne->i = i;
 			ligne->next = NULL;
+
+			return 0;
 		}
 	}
 	else
