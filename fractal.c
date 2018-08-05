@@ -12,10 +12,18 @@ void main()
 	printf("Assignation de valeurs");
 	int err=0;
 	err = matrix_set(mat1, 1, 2, 17);
-	printf("assignation de la première valeur dans mat1: %d \n", err);
+	printf("%d \n", err);
+	err = matrix_set(mat1, 1, 3, 12);
+	printf("%d \n", err);
+	err = matrix_set(mat1, 1, 1, 10);
+	printf("%d \n", err);
+	err = matrix_set(mat1, 0, 0, 1);
+	printf("%d \n", err);
+	err = matrix_set(mat1, 1, 2, 120);
+	printf("%d \n", err);
 	err = 0;
 	err = sp_matrix_set(sp_mat1, 1, 2, 17.17);
-	printf("assignation de la première valeur dans sp_mat1: %d \n", err);
+	printf("%d \n", err);
 	
 	printf("libération des matrices\n");
 	matrix_free(mat1);
@@ -27,17 +35,11 @@ void main()
 
 struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 {
-	//printf("1\n");
 	//Allocation de la memoire et initialisation des variables selon les arguments.
 	struct matrix *mat = (struct matrix *)malloc(sizeof(struct matrix));
-	//printf("2\n");
 	mat->nlines = nlines;
-	//printf("3\n");
 	mat->ncols = ncols;
-	//printf("4\n");
-	//double ele[nlines][ncols];
 	double ** ele = (double **)malloc(nlines * sizeof(double*));
-	//printf("5\n");
 	//Initialisation du tableau pour que toutes les valeurs valent 0.
 	int i;
 	for (i = 0; i < nlines; i++)
@@ -50,9 +52,7 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 			ele[i][j] = 0;
 		}
 	}
-	//printf("6\n");
 	mat->elems = ele;
-	//printf("7\n");
 	return mat;
 }
 
