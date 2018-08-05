@@ -21,6 +21,10 @@ void main()
 	printf("%f\n", mat1->elems[0][0]);
 	err = matrix_set(mat1, 1, 2, 54);
 	printf("%f\n", mat1->elems[1][2]);
+	err = matrix_set(mat1, 0, 2, 31);
+	printf("%f\n", mat1->elems[0][2]);
+	err = matrix_set(mat1, 3, 2, 99);
+	printf("%f\n", mat1->elems[3][1]);
 	printf("-2");
 	matrix_grap(mat1);
 	printf("-1");
