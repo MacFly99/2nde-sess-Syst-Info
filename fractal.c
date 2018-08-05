@@ -4,13 +4,14 @@
 
 void main() 
 { 
+	int err = 0;
 	printf("Creation des matrices \n");
 	struct matrix *mat1 = matrix_init(4, 3);
 	matrix_grap(mat1);
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.001, 4, 3);
 	
 	printf("Assignation de valeurs\n");
-	int err=0;
+	err = 0;
 	err = matrix_set(mat1, 1, 2, 17);
 	printf("%f\n", mat1->elems[1][2]);
 	err = matrix_set(mat1, 2, 0, 12);
@@ -25,27 +26,27 @@ void main()
 	printf("%f\n", mat1->elems[0][2]);
 	err = matrix_set(mat1, 3, 2, 99);
 	printf("%f\n", mat1->elems[3][2]);
-	printf("-2");
-	matrix_grap(mat1);
-	printf("-1");
+	printf("-2\n");
+	err = matrix_grap(mat1);
+	printf("-1\n");
 	err = 0;
-	printf("0");
+	printf("0\n");
 	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
-	printf("1");
+	printf("1\n");
 	printf("%f", sp_mat1->lines->next->elems->next->next->value);
 	err = sp_matrix_set(sp_mat1, 2, 0, 12.13);
-	printf("2");
+	printf("2\n");
 	printf("%f", sp_mat1->lines->next->next->elems->value);
 	err = sp_matrix_set(sp_mat1, 1, 1, 10.11);
-	printf("3");
+	printf("3\n");
 	printf("%f", sp_mat1->lines->next->elems->next->value);
 	err = sp_matrix_set(sp_mat1, 0, 0, 28.22);
-	printf("4");
+	printf("4\n");
 	printf("%f", sp_mat1->lines->elems->value);
 	err = sp_matrix_set(sp_mat1, 1, 2, 54.01);
-	printf("5");
+	printf("5\n");
 	printf("%f", sp_mat1->lines->next->elems->next->next->value);
-	sp_matrix_grap(sp_mat1);
+	err = sp_matrix_grap(sp_mat1);
 
 	
 	printf("Liberation des matrices\n");
@@ -1002,7 +1003,7 @@ struct sp_matrix *sp_matrix_load(char *path)
 
 //FONCTIONS DE TEST
 
-void matrix_grap(const struct matrix *matrix)
+int matrix_grap(const struct matrix *matrix)
 {
 	int i;
 	for (i = 0; i < matrix->nlines; i++)
@@ -1014,11 +1015,10 @@ void matrix_grap(const struct matrix *matrix)
 		}
 		printf("\n");
 	}
-	return;
+	return 0;
 }
-printf("%f \n", matrix->elems[0][0]);
 
-void sp_matrix_grap(const struct sp_matrix *mat)
+int sp_matrix_grap(const struct sp_matrix *mat)
 {
 	struct matrix *matrix = sp_matrix_to_matrix(mat);
 	int i;
