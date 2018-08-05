@@ -24,7 +24,7 @@ void main()
 	err = matrix_set(mat1, 0, 2, 31);
 	printf("%f\n", mat1->elems[0][2]);
 	err = matrix_set(mat1, 3, 2, 99);
-	printf("%f\n", mat1->elems[3][1]);
+	printf("%f\n", mat1->elems[3][2]);
 	printf("-2");
 	matrix_grap(mat1);
 	printf("-1");
@@ -1016,6 +1016,7 @@ void matrix_grap(const struct matrix *matrix)
 	}
 	return;
 }
+printf("%f \n", matrix->elems[0][0]);
 
 void sp_matrix_grap(const struct sp_matrix *mat)
 {
