@@ -5,20 +5,20 @@
 void main() 
 { 
 	printf("Création des matrices \n");
-	//struct matrix *mat1 = matrix_init(4, 3);
+	struct matrix *mat1 = matrix_init(4, 3);
 
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.001, 4, 3);
 	
 	printf("Assignation de valeurs");
 	int err=0;
-	//err = matrix_set(mat1, 1, 2, 17);
+	err = matrix_set(mat1, 1, 2, 17);
 	printf("assignation de la première valeur dans mat1: %d \n", err);
 	err = 0;
 	err = sp_matrix_set(sp_mat1, 1, 2, 17.17);
 	printf("assignation de la première valeur dans sp_mat1: %d \n", err);
 	
 	printf("libération des matrices\n");
-	//matrix_free(mat1);
+	matrix_free(mat1);
 	sp_matrix_free(sp_mat1);
 	return;
 }
@@ -27,20 +27,22 @@ void main()
 
 struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 {
-	printf("1\n");
+	//printf("1\n");
 	//Allocation de la memoire et initialisation des variables selon les arguments.
 	struct matrix *mat = (struct matrix *)malloc(sizeof(struct matrix));
-	printf("2\n");
+	//printf("2\n");
 	mat->nlines = nlines;
-	printf("3\n");
+	//printf("3\n");
 	mat->ncols = ncols;
-	printf("4\n");
-	double ele[nlines][ncols];
-	printf("5\n");
+	//printf("4\n");
+	//double ele[nlines][ncols];
+	double ** ele = (double **)malloc(nlines * sizeof(double*));
+	//printf("5\n");
 	//Initialisation du tableau pour que toutes les valeurs valent 0.
 	int i;
 	for (i = 0; i < nlines; i++)
 	{
+		*(ele + i) = (double*)malloc(ncols * sizeof(double));
 		int j;
 		for (j = 0; j < ncols; j++)
 		{
@@ -48,9 +50,9 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 			ele[i][j] = 0;
 		}
 	}
-	printf("6\n");
+	//printf("6\n");
 	mat->elems = ele;
-	printf("7\n");
+	//printf("7\n");
 	return mat;
 }
 
@@ -70,6 +72,11 @@ struct sp_matrix *sp_matrix_init(double precision, unsigned int nlines, unsigned
 
 void matrix_free(struct matrix *matrix)
 {
+	int i;
+	for (i = 0; i < matrix->nlines; i++)
+	{
+		free( *(matrix->elems + i) );
+	}
 	free(matrix);
 	return;
 }
