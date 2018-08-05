@@ -21,6 +21,7 @@ void main()
 	printf("%d \n", err);
 	err = matrix_set(mat1, 1, 2, 120);
 	printf("%d \n", err);
+	matrix_grap(mat1);
 	
 	err = 0;
 	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
@@ -982,4 +983,21 @@ struct sp_matrix *sp_matrix_load(char *path)
 		}
 	}
 	return mat;
+}
+
+//FONCTIONS DE TEST
+
+void matrix_grap(const struct matrix *matrix)
+{
+	int i;
+	for (i = 0; i < matrix->nlines; i++)
+	{
+		int j;
+		for (j = 0; j < matrix->ncols; j++)
+		{
+			printf("%f ", matrix->elems[i][j] );
+		}
+		printf("\n");
+	}
+	return;
 }
