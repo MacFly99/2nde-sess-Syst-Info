@@ -9,7 +9,7 @@ void main()
 
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.001, 4, 3);
 	
-	printf("Assignation de valeurs");
+	printf("Assignation de valeurs\n");
 	int err=0;
 	err = matrix_set(mat1, 1, 2, 17);
 	printf("%d \n", err);
@@ -21,8 +21,17 @@ void main()
 	printf("%d \n", err);
 	err = matrix_set(mat1, 1, 2, 120);
 	printf("%d \n", err);
+
 	err = 0;
-	err = sp_matrix_set(sp_mat1, 1, 2, 17.17);
+	err = matrix_set(sp_mat1, 1, 2, 17.12);
+	printf("%d \n", err);
+	err = matrix_set(sp_mat1, 1, 3, 12.13);
+	printf("%d \n", err);
+	err = matrix_set(sp_mat1, 1, 1, 10.11);
+	printf("%d \n", err);
+	err = matrix_set(sp_mat1, 0, 0, 1.12);
+	printf("%d \n", err);
+	err = matrix_set(sp_mat1, 1, 2, 120.15);
 	printf("%d \n", err);
 	
 	printf("libération des matrices\n");
@@ -48,7 +57,6 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 		int j;
 		for (j = 0; j < ncols; j++)
 		{
-			printf("%d %d \n", i, j);
 			ele[i][j] = 0;
 		}
 	}
