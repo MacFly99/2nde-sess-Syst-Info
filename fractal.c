@@ -19,20 +19,21 @@ void main()
 	matrix_grap(mat1);
 	
 	err = 0;
-	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
 	printf("0");
+	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
+	printf("1");
 	printf("%f", sp_mat1->lines->next->elems->next->next->value);
 	err = sp_matrix_set(sp_mat1, 2, 0, 12.13);
-	printf("1");
+	printf("2");
 	printf("%f", sp_mat1->lines->next->next->elems->value);
 	err = sp_matrix_set(sp_mat1, 1, 1, 10.11);
-	printf("2");
+	printf("3");
 	printf("%f", sp_mat1->lines->next->elems->next->value);
 	err = sp_matrix_set(sp_mat1, 0, 0, 28.22);
-	printf("3");
+	printf("4");
 	printf("%f", sp_mat1->lines->elems->value);
 	err = sp_matrix_set(sp_mat1, 1, 2, 54.01);
-	printf("4");
+	printf("5");
 	printf("%f", sp_mat1->lines->next->elems->next->next->value);
 	sp_matrix_grap(sp_mat1);
 
