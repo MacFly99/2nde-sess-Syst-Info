@@ -11,7 +11,7 @@ void main()
 	
 	printf("Assignation de valeurs\n");
 	int err=0;
-	err = matrix_set(mat1, 1, 2, 17);
+	/*err = matrix_set(mat1, 1, 2, 17);
 	printf("%d \n", err);
 	err = matrix_set(mat1, 1, 3, 12);
 	printf("%d \n", err);
@@ -21,7 +21,7 @@ void main()
 	printf("%d \n", err);
 	err = matrix_set(mat1, 1, 2, 120);
 	printf("%d \n", err);
-
+	*/
 	err = 0;
 	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
 	printf("%d \n", err);
