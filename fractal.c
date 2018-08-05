@@ -11,9 +11,9 @@ void main()
 	
 	printf("Assignation de valeurs\n");
 	int err=0;
-	/*err = matrix_set(mat1, 1, 2, 17);
+	err = matrix_set(mat1, 1, 2, 17);
 	printf("%d \n", err);
-	err = matrix_set(mat1, 1, 3, 12);
+	err = matrix_set(mat1, 2, 0, 12);
 	printf("%d \n", err);
 	err = matrix_set(mat1, 1, 1, 10);
 	printf("%d \n", err);
@@ -21,7 +21,7 @@ void main()
 	printf("%d \n", err);
 	err = matrix_set(mat1, 1, 2, 120);
 	printf("%d \n", err);
-	*/
+	
 	err = 0;
 	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
 	printf("%d \n", err);
@@ -162,6 +162,10 @@ int matrix_set(struct matrix *matrix, unsigned int i, unsigned int j, double val
 	{
 		return -1;
 	}
+	if (i >= matrix->nlines || j >= matrix->ncols) //Cela est deja compris dans les pre-conditions de la fonction, mais cela rend quand meme le code plus solide
+	{
+		return -1;
+	}
 	matrix->elems[i][j] = val;
 	return 0;
 }
@@ -169,6 +173,10 @@ int matrix_set(struct matrix *matrix, unsigned int i, unsigned int j, double val
 int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, double val)
 {
 	if (matrix == NULL)
+	{
+		return -1;
+	}
+	if (i >= matrix->lines || j >= matrix->ncols) //Cela est deja compris dans les pre-conditions de la fonction, mais cela rend quand meme le code plus solide
 	{
 		return -1;
 	}
