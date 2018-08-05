@@ -33,20 +33,20 @@ void main()
 	printf("0\n");
 	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
 	printf("1\n");
-	printf("%f", sp_mat1->lines->elems->value);
+	//printf("%f", sp_mat1->lines->elems->value);
 	printf("1bis\n");
-	err = sp_matrix_set(sp_mat1, 2, 0, 12.13);
+	//err = sp_matrix_set(sp_mat1, 2, 0, 12.13);
 	printf("2\n");
-	printf("%f", sp_mat1->lines->next->next->elems->value);
+	//printf("%f", sp_mat1->lines->next->next->elems->value);
 	err = sp_matrix_set(sp_mat1, 1, 1, 10.11);
 	printf("3\n");
-	printf("%f", sp_mat1->lines->next->elems->next->value);
+	//printf("%f", sp_mat1->lines->next->elems->next->value);
 	err = sp_matrix_set(sp_mat1, 0, 0, 28.22);
 	printf("4\n");
-	printf("%f", sp_mat1->lines->elems->value);
+	//printf("%f", sp_mat1->lines->elems->value);
 	err = sp_matrix_set(sp_mat1, 1, 2, 54.01);
 	printf("5\n");
-	printf("%f", sp_mat1->lines->next->elems->next->next->value);
+	//printf("%f", sp_mat1->lines->next->elems->next->next->value);
 	err = sp_matrix_grap(sp_mat1);
 
 	
