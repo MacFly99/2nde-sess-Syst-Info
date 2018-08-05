@@ -34,8 +34,7 @@ void main()
 	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
 	printf("1\n");
 	//printf("%f", sp_mat1->lines->elems->value);
-	printf("1bis\n");
-	//err = sp_matrix_set(sp_mat1, 2, 0, 12.13);
+	err = sp_matrix_set(sp_mat1, 2, 0, 12.13);
 	printf("2\n");
 	//printf("%f", sp_mat1->lines->next->next->elems->value);
 	err = sp_matrix_set(sp_mat1, 1, 1, 10.11);
@@ -187,25 +186,25 @@ int matrix_set(struct matrix *matrix, unsigned int i, unsigned int j, double val
 
 int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, double val)
 {
-	if (matrix == NULL)
+	if (matrix == NULL) //Matrice non-definie, on retourne -1.
 	{
 		return -1;
 	}
-	if (i >= matrix->nlines || j >= matrix->ncols) //Cela est deja compris dans les pre-conditions de la fonction, mais cela rend quand meme le code plus solide
+	if (i >= matrix->nlines || j >= matrix->ncols) //Postion depassant la taille de la matrice. Cela est compris dans les pre-conditions de la fonction, mais cela rend quand meme le code plus solide
 	{
 		return -1;
 	}
-	if (val < matrix->precision && val > -(matrix->precision))
+	if (val < matrix->precision && val > -(matrix->precision)) // On remplace la valeur par 0 si elle est comprise en dessous de la precision de la matrice.
 	{
 		val = 0;
 	}
-	if (matrix->lines == NULL)
+	if (matrix->lines == NULL) //Cas ou la matrice est vide
 	{
-		if (val == 0)
+		if (val == 0)//La matrice reste vide, on ne change rien.
 		{
 			return 0;
 		}
-		else
+		else //On cree le premier element de la matrice, donc une nouvelle ligne et une nouvelle colonne
 		{
 			struct elem *element = (struct elem *)malloc(sizeof(struct elem));
 			element->j = j;
@@ -222,15 +221,15 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 			return 0;
 		}
 	}
-	else
+	else //Cas si la matrice n'est pas vide
 	{
-		if (matrix->lines->i > i)
+		if (matrix->lines->i > i) //Si la premiere ligne existante est plus grande que celle du nouveau nombre.
 		{
-			if (val == 0)
+			if (val == 0) //Si la ligne valait 0, et que la nouvelle valeur aussi, on ne change rien
 			{
 				return 0;
 			}
-			else
+			else //On cree un nouvel element et une nouvelle ligne, celle ci etant la premiere ligne
 			{
 				struct elem *element = (struct elem *)malloc(sizeof(struct elem));
 				element->j = j;
@@ -240,22 +239,22 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 				struct line *ligne = (struct line *)malloc(sizeof(struct line));
 				ligne->elems = element;
 				ligne->i = i;
-				ligne->next = matrix->lines->next;
+				ligne->next = matrix->lines;
 
 				matrix->lines = ligne;
 
 				return 0;
 			}
 		}
-		else if (matrix->lines->i == i)
+		else if (matrix->lines->i == i) //Si la premiere ligne existante est celle du nouveau nombre.
 		{
-			if (matrix->lines->elems->j > j)
+			if (matrix->lines->elems->j > j) //Si la colonne du premier element existant est plus grande que celle du nouveau nombre.
 			{
-				if (val == 0)
+				if (val == 0) //Si la valeur vaut 0, on ne rajoute pas l'element.
 				{
 					return 0;
 				}
-				else
+				else //On cree un nouveau element, le premier de la premiere ligne.
 				{
 					struct elem *element = (struct elem *)malloc(sizeof(struct elem));
 					element->j = j;
@@ -267,9 +266,9 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 					return 0;
 				}
 			}
-			else if (matrix->lines->elems->j == j)
+			else if (matrix->lines->elems->j == j) //Si on doit modifier la valeur du premier element de la premiere ligne.
 			{
-				if (val == 0)
+				if (val == 0) //Si la nouvelle valeure est 0, on doit liberer la memoire de l'element present avant.
 				{
 					if (matrix->lines->elems->next == NULL)
 					{
@@ -300,7 +299,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 						return 0;
 					}
 				}
-				else
+				else //Si la valeur est differente de 0, on remplace la valeur du premier element de la premiere ligne par la nouvelle valeur.
 				{
 					matrix->lines->elems->value = val;
 					return 0;
