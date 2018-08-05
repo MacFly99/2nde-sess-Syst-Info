@@ -80,11 +80,12 @@ struct sp_matrix *sp_matrix_init(double precision, unsigned int nlines, unsigned
 
 void matrix_free(struct matrix *matrix)
 {
+	double **ele = matrix->elems;
 	int i;
 	for (i = 0; i < matrix->nlines; i++)
 	{
 		printf("%d \n", i);
-		free( ((matrix->elems) + i) );
+		free( *(ele + i) );
 	}
 	free(matrix);
 	return;
