@@ -25,7 +25,7 @@ void main()
 	err = 0;
 	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
 	printf("%d \n", err);
-	err = sp_matrix_set(sp_mat1, 1, 3, 12.13);
+	err = sp_matrix_set(sp_mat1, 1, 2, 12.13);
 	printf("%d \n", err);
 	err = sp_matrix_set(sp_mat1, 1, 1, 10.11);
 	printf("%d \n", err);
@@ -84,7 +84,6 @@ void matrix_free(struct matrix *matrix)
 	int i;
 	for (i = 0; i < matrix->nlines; i++)
 	{
-		printf("%d \n", i);
 		free( *(ele + i) );
 	}
 	free(matrix);
@@ -176,7 +175,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 	{
 		return -1;
 	}
-	if (i >= matrix->lines || j >= matrix->ncols) //Cela est deja compris dans les pre-conditions de la fonction, mais cela rend quand meme le code plus solide
+	if (i >= matrix->nlines || j >= matrix->ncols) //Cela est deja compris dans les pre-conditions de la fonction, mais cela rend quand meme le code plus solide
 	{
 		return -1;
 	}
