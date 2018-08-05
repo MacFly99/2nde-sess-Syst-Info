@@ -23,15 +23,15 @@ void main()
 	printf("%d \n", err);
 
 	err = 0;
-	err = matrix_set(sp_mat1, 1, 2, 17.12);
+	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
 	printf("%d \n", err);
-	err = matrix_set(sp_mat1, 1, 3, 12.13);
+	err = sp_matrix_set(sp_mat1, 1, 3, 12.13);
 	printf("%d \n", err);
-	err = matrix_set(sp_mat1, 1, 1, 10.11);
+	err = sp_matrix_set(sp_mat1, 1, 1, 10.11);
 	printf("%d \n", err);
-	err = matrix_set(sp_mat1, 0, 0, 1.12);
+	err = sp_matrix_set(sp_mat1, 0, 0, 1.12);
 	printf("%d \n", err);
-	err = matrix_set(sp_mat1, 1, 2, 120.15);
+	err = sp_matrix_set(sp_mat1, 1, 2, 120.15);
 	printf("%d \n", err);
 	
 	printf("libération des matrices\n");
@@ -83,7 +83,8 @@ void matrix_free(struct matrix *matrix)
 	int i;
 	for (i = 0; i < matrix->nlines; i++)
 	{
-		free( *(matrix->elems + i) );
+		printf("%d \n", i);
+		free( ((matrix->elems) + i) );
 	}
 	free(matrix);
 	return;
