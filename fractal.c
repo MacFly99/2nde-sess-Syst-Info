@@ -6,18 +6,24 @@ void main()
 { 
 	printf("Creation des matrices \n");
 	struct matrix *mat1 = matrix_init(4, 3);
-
+	matrix_grap(mat1);
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.001, 4, 3);
 	
 	printf("Assignation de valeurs\n");
 	int err=0;
 	err = matrix_set(mat1, 1, 2, 17);
+	printf("%f",mat1->elems[1][2])
 	err = matrix_set(mat1, 2, 0, 12);
+	printf("%f", mat1->elems[2][0])
 	err = matrix_set(mat1, 1, 1, 10);
+	printf("%f", mat1->elems[1][1])
 	err = matrix_set(mat1, 0, 0, 28);
+	printf("%f", mat1->elems[0][0])
 	err = matrix_set(mat1, 1, 2, 54);
+	printf("%f", mat1->elems[1][2])
+	printf("-2");
 	matrix_grap(mat1);
-	
+	printf("-1");
 	err = 0;
 	printf("0");
 	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
@@ -204,6 +210,8 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 			ligne->elems = element;
 			ligne->i = i;
 			ligne->next = NULL;
+
+			matrix->lines = ligne;
 
 			return 0;
 		}
