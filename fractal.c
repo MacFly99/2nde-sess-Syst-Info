@@ -374,7 +374,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 
 		}
 
-		else if (matrix->lines->next == NULL)//Si il n'y a qu'une ligne et que le nouvel element n'en fait pas partie, on cree une nouvelle ligne+nouvel elem
+		else if (matrix->lines->next == NULL)//Si il n'y a qu'une ligne
 		{
 			if (matrix->lines->i > i)//L'element a creer est dans une ligne plus petite que la ligne deja existante
 			{
@@ -402,7 +402,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 			else if (matrix->lines->i == i)//L'element a creer se place dans la seule ligne deja existente, on cherche ou le placer dans la ligne
 			{
 			//struct line *prePointeurLi = pointeurli;
-			//pointeurli = pointeurli->next;  pointeurli => matrix->lines
+			//pointeurli = pointeurli->next;  ((pointeurli => matrix->lines))
 			if (matrix->lines->elems->j > j)//L'element a creer se place avant le premier element de la seule ligne 
 			{
 				if (val == 0)
@@ -461,7 +461,24 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 					return 0;
 				}
 			}
+			else if (matrix->lines->elems->next == NULL)
+			{
+				if (val == 0)
+				{
+					return 0;
+				}
+				else
+				{
+					struct elem *element = (struct elem *)malloc(sizeof(struct elem));
+					element->j = j;
+					element->next = NULL;
+					element->value = val;
 
+					matrix->lines->elems->next = element;
+
+					return 0;
+				}
+			}
 			int flag = 1;
 			struct elem *pointeurco = matrix->lines->elems;
 			while (pointeurco->next->j < j && flag)
@@ -626,6 +643,24 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 				else
 				{
 					pointeurli->elems->value = val;
+					return 0;
+				}
+			}
+			else if (pointeurli->elems->next == NULL)
+			{
+				if (val == 0)
+				{
+					return 0;
+				}
+				else
+				{
+					struct elem *element = (struct elem *)malloc(sizeof(struct elem));
+					element->j = j;
+					element->next = NULL;
+					element->value = val;
+
+					pointeurli->elems->next = element;
+
 					return 0;
 				}
 			}
