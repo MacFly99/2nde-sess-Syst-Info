@@ -304,7 +304,17 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 					return 0;
 				}
 			}
+			else if (matrix->lines->elems->next == NULL)
+			{
+				struct elem *element = (struct elem *)malloc(sizeof(struct elem));
+				element->j = j;
+				element->next = NULL;
+				element->value = val;
 
+				matrix->lines->elems->next = element;
+
+				return 0;
+			}
 			int flag = 1;
 			struct elem *pointeurco = matrix->lines->elems;
 			while (pointeurco->next->j < j && flag)
