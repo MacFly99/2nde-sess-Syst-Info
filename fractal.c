@@ -222,201 +222,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 	}
 	else //Cas si la matrice n'est pas vide
 	{
-		if (matrix->lines->next == NULL)//Si il n'y a qu'une ligne
-		{
-			if (matrix->lines->i > i)//L'element a creer est dans une ligne plus petite que la ligne deja existante
-			{
-				if (val == 0)//La matrice garde une seule ligne non nulle
-				{
-					return 0;
-				}
-				else //On cree un element de la matrice dans une nouvelle ligne, donc une nouvelle ligne et une nouvelle colonne
-				{
-					struct elem *element = (struct elem *)malloc(sizeof(struct elem));
-					element->j = j;
-					element->next = NULL;
-					element->value = val;
-
-					struct line *ligne = (struct line *)malloc(sizeof(struct line));
-					ligne->elems = element;
-					ligne->i = i;
-					ligne->next = matrix->lines;
-
-					matrix->lines = ligne;
-
-					return 0;
-				}
-			}
-			else if (matrix->lines->i == i)//L'element a creer se place dans la seule ligne deja existente, on cherche ou le placer dans la ligne
-			{
-				//struct line *prePointeurLi = pointeurli;
-				//pointeurli = pointeurli->next;  ((pointeurli => matrix->lines))
-				if (matrix->lines->elems->j > j)//L'element a creer se place avant le premier element de la seule ligne 
-				{
-					if (val == 0)
-					{
-						return 0;
-					}
-					else
-					{
-
-						struct elem *element = (struct elem *)malloc(sizeof(struct elem));
-						element->j = j;
-						element->next = matrix->lines->elems;
-						element->value = val;
-
-						matrix->lines->elems = element;
-
-						return 0;
-					}
-				}
-				else if (matrix->lines->elems->j == j)
-				{
-					if (val == 0)
-					{
-						if (matrix->lines->elems->next == NULL)
-						{
-							free(matrix->lines->elems);
-
-							if (matrix->lines->next == NULL)
-							{
-								free(matrix->lines);
-								matrix->lines = NULL;
-								return 0;
-							}
-							else
-							{
-								struct line *att = matrix->lines;
-								matrix->lines = matrix->lines->next;
-								free(att);
-
-								return 0;
-							}
-							return -3;
-						}
-						else
-						{
-							struct elem *att = matrix->lines->elems;
-							matrix->lines->elems = matrix->lines->elems->next;
-							free(att);
-
-							return 0;
-						}
-					}
-					else
-					{
-						matrix->lines->elems->value = val;
-						return 0;
-					}
-				}
-				else if (matrix->lines->elems->next == NULL)
-				{
-					if (val == 0)
-					{
-						return 0;
-					}
-					else
-					{
-						struct elem *element = (struct elem *)malloc(sizeof(struct elem));
-						element->j = j;
-						element->next = NULL;
-						element->value = val;
-						matrix->lines->elems->next = element;
-						return 0;
-					}
-				}
-				int flag = 1;
-				struct elem *pointeurco = matrix->lines->elems;
-				while (pointeurco->next->j < j && flag)
-				{
-					if (pointeurco->next->next == NULL)
-					{
-						flag = 0;
-					}
-					else
-					{
-						pointeurco = pointeurco->next;
-					}
-				}
-
-				if (pointeurco->next->j == j)
-				{
-					if (val == 0)
-					{
-						struct elem *att = pointeurco->next;
-						pointeurco->next = pointeurco->next->next;
-						free(att);
-
-						return 0;
-					}
-					else
-					{
-						pointeurco->next->value = val;
-						return 0;
-					}
-				}
-				else if (!flag)
-				{
-					if (val == 0)
-					{
-						return 0;
-					}
-					else
-					{
-						struct elem *element = (struct elem *)malloc(sizeof(struct elem));
-						element->j = j;
-						element->next = NULL;
-						element->value = val;
-
-						pointeurco->next->next = element;
-
-						return 0;
-					}
-				}
-				else
-				{
-					if (val == 0)
-					{
-						return 0;
-					}
-					else
-					{
-						struct elem *element = (struct elem *)malloc(sizeof(struct elem));
-						element->j = j;
-						element->next = pointeurco->next;
-						element->value = val;
-
-						pointeurco->next = element;
-
-						return 0;
-					}
-				}
-			}
-			else //L'element a creer est dans une ligne plus grande que la ligne deja existante
-			{
-				if (val == 0)//La matrice garde une seule ligne non nulle
-				{
-					return 0;
-				}
-				else //On cree un element de la matrice dans une nouvelle ligne, donc une nouvelle ligne et une nouvelle colonne
-				{
-					struct elem *element = (struct elem *)malloc(sizeof(struct elem));
-					element->j = j;
-					element->next = NULL;
-					element->value = val;
-
-					struct line *ligne = (struct line *)malloc(sizeof(struct line));
-					ligne->elems = element;
-					ligne->i = i;
-					ligne->next = NULL;
-
-					matrix->lines->next = ligne;
-
-					return 0;
-				}
-			}
-		}
-		else if (matrix->lines->i > i) //Si la premiere ligne existante est plus grande que celle du nouveau nombre.
+		if (matrix->lines->i > i) //Si la premiere ligne existante est plus grande que celle du nouveau nombre.
 		{
 			if (val == 0) //Si la ligne valait 0, et que la nouvelle valeur aussi, on ne change rien
 			{
@@ -567,7 +373,29 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 			}
 
 		}
-		
+		else if (matrix->lines->next == NULL && matrix->lines->i < i)//Si il n'y a qu'une ligne et qu'on doit rajouter une ligne apres celle-ci
+		{
+			if (val == 0)//La matrice garde une seule ligne non nulle
+			{
+				return 0;
+			}
+			else //On cree un element de la matrice dans une nouvelle ligne, donc une nouvelle ligne et une nouvelle colonne
+			{
+				struct elem *element = (struct elem *)malloc(sizeof(struct elem));
+				element->j = j;
+				element->next = NULL;
+				element->value = val;
+
+				struct line *ligne = (struct line *)malloc(sizeof(struct line));
+				ligne->elems = element;
+				ligne->i = i;
+				ligne->next = NULL;
+
+				matrix->lines->next = ligne;
+
+				return 0;
+			}
+		}
 		//On parcourt les lignes pour trouver celle ou s'arreter, meme systeme que pour trouver le bon element dans la 1ere ligne
 		int flag = 1;
 		struct line *pointeurli = matrix->lines;
