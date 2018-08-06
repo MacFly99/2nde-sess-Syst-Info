@@ -643,7 +643,7 @@ double sp_matrix_get(const struct sp_matrix *matrix, unsigned int i, unsigned in
 {
 	if (matrix == NULL)
 	{
-		return -10 * 10 ^ 4 + 387;
+		return -1;
 	}
 	else if (matrix->lines == NULL)
 	{
@@ -652,39 +652,49 @@ double sp_matrix_get(const struct sp_matrix *matrix, unsigned int i, unsigned in
 	else
 	{
 		struct line *pointeurli = matrix->lines;
-		while (pointeurli->i <= i)
+		int flag = 1;
+		while (pointeurli->next != NULL && flag)
 		{
-			if (pointeurli->i == i)
-			{
-				if (pointeurli->elems == NULL)
-				{
-					return 0;
-				}
-				else
-				{
-					struct elem *pointeurco = pointeurli->elems;
-					while (pointeurco->j <= j)
-					{
-						if (pointeurco->j == j)
-						{
-							return pointeurco->value;
-						}
-						else
-						{
-							pointeurco = pointeurco->next;
-						}
-					}
-					return 0;
-				}
-			}
-			else
+			if (pointeurli->i < i)
 			{
 				pointeurli = pointeurli->next;
 			}
+			else if (pointeurli->i == i)
+			{
+				flag = 0;
+			}
+			else
+			{
+				return 0;
+			}
 		}
-		return 0;
+		if (pointeurli->next == NULL && pointeurli->i != i)
+		{
+			return 0;
+		}
+
+		struct elem *pointeurco = pointeurli->elems;
+		while (pointeurco->next != NULL)
+		{
+			if (pointeurco->j < j)
+			{
+				pointeurco = pointeurco->next;
+			}
+			else if (pointeurco->j == j)
+			{
+				return pointeurco->value;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		if (pointeurco->j == j)
+		{
+			return pointeurco->value;
+		}
 	}
-	return -10 * 10 ^ 4 + 387;
+	return 0;
 }
 
 // ADDITION DE DEUX MATRICES // ADD // // //
