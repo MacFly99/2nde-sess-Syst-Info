@@ -7,8 +7,8 @@ void main()
 	int err = 0;
 	printf("Creation des matrices \n");
 	struct matrix *mat1 = matrix_init(4, 3);
-	matrix_grap(mat1);
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.001, 4, 3);
+	err = sp_matrix_grap(sp_mat1);
 	
 	printf("Assignation de valeurs\n");
 	err = 0;
