@@ -222,6 +222,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 	}
 	else //Cas si la matrice n'est pas vide
 	{
+		printf("0\n");
 		if (matrix->lines->i > i) //Si la premiere ligne existante est plus grande que celle du nouveau nombre.
 		{
 			if (val == 0) //Si la ligne valait 0, et que la nouvelle valeur aussi, on ne change rien
@@ -245,6 +246,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 				return 0;
 			}
 		}
+		printf("1\n");
 		else if (matrix->lines->i == i) //Si la premiere ligne existante est celle du nouvel element.
 		{
 			if (matrix->lines->elems->j > j) //Si la colonne du premier element existant est plus grande que celle du nouveau nombre.
@@ -373,9 +375,10 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 			}
 
 		}
-
+		printf("2\n");
 		else if (matrix->lines->next == NULL)//Si il n'y a qu'une ligne
 		{
+			printf("3\n");
 			if (matrix->lines->i > i)//L'element a creer est dans une ligne plus petite que la ligne deja existante
 			{
 				if (val == 0)//La matrice garde une seule ligne non nulle
@@ -399,8 +402,10 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 					return 0;
 				}
 			}
+			printf("4\n");
 			else if (matrix->lines->i == i)//L'element a creer se place dans la seule ligne deja existente, on cherche ou le placer dans la ligne
 			{
+				printf("5\n");
 			//struct line *prePointeurLi = pointeurli;
 			//pointeurli = pointeurli->next;  ((pointeurli => matrix->lines))
 			if (matrix->lines->elems->j > j)//L'element a creer se place avant le premier element de la seule ligne 
@@ -422,6 +427,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 					return 0;
 				}
 			}
+			printf("6\n");
 			else if (matrix->lines->elems->j == j)
 			{
 				if (val == 0)
@@ -461,6 +467,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 					return 0;
 				}
 			}
+			printf("7\n");
 			else if (matrix->lines->elems->next == NULL)
 			{
 				if (val == 0)
@@ -480,6 +487,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 					return 0;
 				}
 			}
+			printf("8\n");
 			int flag = 1;
 			struct elem *pointeurco = matrix->lines->elems;
 			while (pointeurco->next->j < j && flag)
