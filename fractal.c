@@ -469,13 +469,14 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 				}
 				else
 				{
+					printf("0\n");
 					struct elem *element = (struct elem *)malloc(sizeof(struct elem));
 					element->j = j;
 					element->next = NULL;
 					element->value = val;
-
+					printf("0\n");
 					matrix->lines->elems->next = element;
-
+					printf("0\n");
 					return 0;
 				}
 			}
