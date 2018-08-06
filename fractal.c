@@ -425,7 +425,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 
 		if (pointeurli->next->i == i) //La ligne existe deja, il ne faut pas en creer, juste rajouter (ou pas) un nouvel elem
 		{
-			struct line *prepointeurli = pointeurli;
+			struct line *prePointeurLi = pointeurli;
 			pointeurli = pointeurli->next;
 			if (pointeurli->elems->j > j)
 			{
@@ -457,12 +457,12 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 						if (pointeurli->next == NULL)
 						{
 							free(pointeurli);
-							prepointeurli = NULL;
+							prePointeurLi->next = NULL;
 							return 0;
 						}
 						else
 						{
-							prepointeurli->next = pointeurli->next;
+							prePointeurLi->next = pointeurli->next;
 							free(pointeurli);
 
 							return 0;
