@@ -225,6 +225,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 		printf("0\n");
 		if (matrix->lines->i > i) //Si la premiere ligne existante est plus grande que celle du nouveau nombre.
 		{
+			printf("1\n");
 			if (val == 0) //Si la ligne valait 0, et que la nouvelle valeur aussi, on ne change rien
 			{
 				return 0;
@@ -248,6 +249,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 		}
 		else if (matrix->lines->i == i) //Si la premiere ligne existante est celle du nouvel element.
 		{
+			printf("2\n");
 			if (matrix->lines->elems->j > j) //Si la colonne du premier element existant est plus grande que celle du nouveau nombre.
 			{
 				if (val == 0) //Si la valeur vaut 0, on ne rajoute pas l'element.
