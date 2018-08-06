@@ -13,19 +13,12 @@ void main()
 	printf("Assignation de valeurs\n");
 	err = 0;
 	err = matrix_set(mat1, 1, 2, 17);
-	printf("%f\n", mat1->elems[1][2]);
 	err = matrix_set(mat1, 2, 0, 12);
-	printf("%f\n", mat1->elems[2][0]);
 	err = matrix_set(mat1, 1, 1, 10);
-	printf("%f\n", mat1->elems[1][1]);
 	err = matrix_set(mat1, 0, 0, 28);
-	printf("%f\n", mat1->elems[0][0]);
 	err = matrix_set(mat1, 1, 2, 54);
-	printf("%f\n", mat1->elems[1][2]);
 	err = matrix_set(mat1, 0, 2, 31);
-	printf("%f\n", mat1->elems[0][2]);
 	err = matrix_set(mat1, 3, 2, 99);
-	printf("%f\n", mat1->elems[3][2]);
 	printf("-2\n");
 	err = matrix_grap(mat1);
 	printf("-1\n");
@@ -33,19 +26,14 @@ void main()
 	printf("0\n");
 	err = sp_matrix_set(sp_mat1, 1, 2, 17.12);
 	printf("1\n");
-	//printf("%f", sp_mat1->lines->elems->value);
 	err = sp_matrix_set(sp_mat1, 2, 0, 12.13);
 	printf("2\n");
-	//printf("%f", sp_mat1->lines->next->next->elems->value);
 	err = sp_matrix_set(sp_mat1, 1, 1, 10.11);
 	printf("3\n");
-	//printf("%f", sp_mat1->lines->next->elems->next->value);
 	err = sp_matrix_set(sp_mat1, 0, 0, 28.22);
 	printf("4\n");
-	//printf("%f", sp_mat1->lines->elems->value);
 	err = sp_matrix_set(sp_mat1, 1, 2, 54.01);
 	printf("5\n");
-	//printf("%f", sp_mat1->lines->next->elems->next->next->value);
 	err = sp_matrix_grap(sp_mat1);
 
 	
