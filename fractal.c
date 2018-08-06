@@ -366,6 +366,29 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 
 		}
 
+		else if (matrix->lines->next == NULL)//Si il n'y a qu'une ligne et que le nouvel element n'en fait pas partie, on cree une nouvelle ligne+nouvel elem
+		{
+			if (val == 0)//La matrice garde une seule ligne non nulle
+			{
+				return 0;
+			}
+			else //On cree un element de la matrice dans une nouvelle ligne, donc une nouvelle ligne et une nouvelle colonne
+			{
+				struct elem *element = (struct elem *)malloc(sizeof(struct elem));
+				element->j = j;
+				element->next = NULL;
+				element->value = val;
+
+				struct line *ligne = (struct line *)malloc(sizeof(struct line));
+				ligne->elems = element;
+				ligne->i = i;
+				ligne->next = NULL;
+
+				matrix->lines->next = ligne;
+
+				return 0;
+			}
+		}
 		//On parcourt les lignes pour trouver celle ou s'arreter, meme systeme que pour trouver le bon element dans la 1ere ligne
 		int flag = 1;
 		struct line *pointeurli = matrix->lines;
