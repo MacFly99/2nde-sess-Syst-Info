@@ -42,6 +42,7 @@ void main()
 	err = matrix_set(mat2, 2, 0, 7);
 
 	err = matrix_grap(mat1);
+	printf("\n");
 	err = matrix_grap(mat2);
 	struct matrix *result = matrix_add(mat1, mat2);
 	err = matrix_grap(result);
@@ -1071,6 +1072,7 @@ int matrix_grap(const struct matrix *matrix)
 		}
 		printf("\n");
 	}
+	printf("\n");
 	return 0;
 }
 
@@ -1087,5 +1089,6 @@ int sp_matrix_grap(const struct sp_matrix *mat)
 		}
 		printf("\n");
 	}
-	return;
+	printf("\n");
+	return 0;
 }
