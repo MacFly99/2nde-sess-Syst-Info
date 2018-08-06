@@ -23,37 +23,21 @@ void main()
 	struct matrix *mat1 = matrix_init(4, 4);
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
 
-	err = sp_matrix_grap(sp_mat1);
+	err = matrix_set(mat1, 1, 1, 1);
+	err = matrix_set(mat1, 1, 3, 2);
+	err = matrix_set(mat1, 1, 2, 3);
+	err = matrix_set(mat1, 2, 2, 4);
+	err = matrix_set(mat1, 0, 1, 5);
+	err = matrix_set(mat1, 0, 3, 6);
 
-	err = sp_matrix_set(sp_mat1, 1, 1, 1);
-	printf("01 err:%d 1 1 1\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 1, 3, 2);
-	printf("02 err:%d 1 3 2\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 1, 2, 3);
-	printf("03 err:%d 1 2 3\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 2, 2, 4);
-	printf("04 err:%d 2 2 4\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 0, 1, 5);
-	printf("05 err:%d 0 1 5\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 0, 3, 6);
-	printf("06 err:%d 0 3 6\n", err);
-	err = sp_matrix_grap(sp_mat1);
 	printf("\ntest get\n");
+	err = matrix_grap(mat1);
+
 	printf("\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f",
-		sp_matrix_get(sp_mat1, 0, 0), sp_matrix_get(sp_mat1, 0, 1), sp_matrix_get(sp_mat1, 0, 2), sp_matrix_get(sp_mat1, 0, 3),
-		sp_matrix_get(sp_mat1, 1, 0), sp_matrix_get(sp_mat1, 1, 1), sp_matrix_get(sp_mat1, 1, 2), sp_matrix_get(sp_mat1, 1, 3),
-		sp_matrix_get(sp_mat1, 2, 0), sp_matrix_get(sp_mat1, 2, 1), sp_matrix_get(sp_mat1, 2, 2), sp_matrix_get(sp_mat1, 2, 3),
-		sp_matrix_get(sp_mat1, 3, 0), sp_matrix_get(sp_mat1, 3, 1), sp_matrix_get(sp_mat1, 3, 2), sp_matrix_get(sp_mat1, 3, 3));
+		matrix_get(mat1, 0, 0), matrix_get(mat1, 0, 1), matrix_get(mat1, 0, 2), matrix_get(mat1, 0, 3),
+		matrix_get(mat1, 1, 0), matrix_get(mat1, 1, 1), matrix_get(mat1, 1, 2), matrix_get(mat1, 1, 3),
+		matrix_get(mat1, 2, 0), matrix_get(mat1, 2, 1), matrix_get(mat1, 2, 2), matrix_get(mat1, 2, 3),
+		matrix_get(mat1, 3, 0), matrix_get(mat1, 3, 1), matrix_get(mat1, 3, 2), matrix_get(mat1, 3, 3));
 
 	matrix_free(mat1);
 	sp_matrix_free(sp_mat1);
