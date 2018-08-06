@@ -6,59 +6,21 @@ void main()
 { 
 	int err = 0;
 	printf("Creation des matrices \n");
-	struct matrix *mat1 = matrix_init(4, 3);
-	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 3);
+	struct matrix *mat1 = matrix_init(4, 4);
+	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
 
+	err = sp_matrix_set(sp_mat1, 1, 1, 1);
+	err = sp_matrix_set(sp_mat1, 1, 3, 2);
+	err = sp_matrix_set(sp_mat1, 1, 2, 3);
+	err = sp_matrix_set(sp_mat1, 2, 2, 4);
+	err = sp_matrix_set(sp_mat1, 0, 1, 5);
+	err = sp_matrix_set(sp_mat1, 0, 3, 6);
 	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(NULL, 1, 2, 17.12); //Matrice NULL => ret:-1
-	printf("01  err:%d mat NULL\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 5, 2, 17.12); //Ligne trop grande => ret:-1
-	printf("02  err:%d 5 2 17.12\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 1, 3, 17.12); //Colonne trop grande => ret:-1
-	printf("03  err:%d 1 3 17.12\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 1, 2, 0.005); //Val<precision => val=0 =>ne change rien car mat vide
-	printf("04  err:%d 1 2 0.005\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 1, 1, 10.11); //Matrice vide => premier element
-	printf("05  err:%d 1 1 10.11\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 0, 2, 0); //element avant la premiere ligne = 0 =>rien changé
-	printf("06  err:%d 0 2 0\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 0, 2, 28.22); //element avant la premiere ligne =/= 0 =>nouvel elem
-	printf("07  err:%d 0 2 28.22\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 0, 0, 0); //element avant la premiere ligne, avant le premier elem = 0 =>rien changé
-	printf("08  err:%d 0 0 0\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 0, 0, 28.22); //element avant la premiere ligne, avant le premier elem =/= 0 =>nouvel elem
-	printf("09  err:%d 0 0 28.22\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 0, 0, 0); //element de la premiere ligne, de le premier elem existant =0 => libere la memoire de l'elem
-	printf("10  err:%d 0 0 0\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 0, 2, 11.21); //element de la premiere ligne, de le premier elem existant =/=0 =>modifie la val de l'elem
-	printf("11  err:%d 0 2 11.21\n", err);
-	err = sp_matrix_grap(sp_mat1);
-
-	err = sp_matrix_set(sp_mat1, 1, 1, 0.005); //Val<precision => val=0, libere
-	printf("12  err:%d 1 1 0.005\n", err);
-	err = sp_matrix_grap(sp_mat1);
-	
+	printf("\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f",
+		sp_matrix_get(sp_mat1, 0, 0), sp_matrix_get(sp_mat1, 0, 1), sp_matrix_get(sp_mat1, 0, 2), sp_matrix_get(sp_mat1, 0, 3),
+		sp_matrix_get(sp_mat1, 1, 0), sp_matrix_get(sp_mat1, 1, 1), sp_matrix_get(sp_mat1, 1, 2), sp_matrix_get(sp_mat1, 1, 3)
+		sp_matrix_get(sp_mat1, 2, 0), sp_matrix_get(sp_mat1, 2, 1), sp_matrix_get(sp_mat1, 2, 2), sp_matrix_get(sp_mat1, 2, 3)
+		sp_matrix_get(sp_mat1, 3, 0), sp_matrix_get(sp_mat1, 3, 1), sp_matrix_get(sp_mat1, 3, 2), sp_matrix_get(sp_mat1, 3, 3));
 	printf("Liberation des matrices\n");
 	matrix_free(mat1);
 	sp_matrix_free(sp_mat1);
@@ -609,7 +571,7 @@ double matrix_get(const struct matrix *matrix, unsigned int i, unsigned int j)
 {
 	if (matrix == NULL)
 	{
-		return -10 * 10 ^ 4 + 387;
+		return -1;
 	}
 	else
 	{
