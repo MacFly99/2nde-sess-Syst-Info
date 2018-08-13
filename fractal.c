@@ -113,8 +113,63 @@ sp_transp = sp_matrix_transpose(sp_mat2);
 err = sp_matrix_grap(sp_transp);
 */
 
-/*
+/* TEST MULT
+struct matrix *mat3 = matrix_init(3, 3);
+struct matrix *mat4 = matrix_init(2, 4);
+struct matrix *res = matrix_mult(mat3, mat4);
+if (res == NULL)
+{
+printf("Ok \n");
+}
+struct sp_matrix *sp_mat3 = sp_matrix_init(0.01, 4, 3);
+struct sp_matrix *sp_mat4 = sp_matrix_init(0.01, 2, 4);
+struct sp_matrix *sp_res = sp_matrix_mult(sp_mat3, sp_mat4);
+if (sp_res == NULL)
+{
+printf("Ok2 \n");
+}
 
+err = matrix_set(mat1, 1, 0, 5);
+err = matrix_set(mat1, 1, 1, 2);
+err = matrix_set(mat1, 2, 1, 3);
+err = matrix_set(mat1, 2, 1, -4);
+err = matrix_set(mat1, 0, 0, 6);
+err = matrix_set(mat1, 0, 1, -9);
+err = matrix_set(mat1, 1, 0, 7);
+
+err = matrix_set(mat2, 1, 3, 1);
+err = matrix_set(mat2, 0, 0, 2);
+err = matrix_set(mat2, 1, 2, -3);
+err = matrix_set(mat2, 0, 3, 4);
+err = matrix_set(mat2, 0, 2, -5);
+err = matrix_set(mat2, 0, 1, 6);
+err = matrix_set(mat2, 1, 0, -7);
+
+err = matrix_grap(mat1);
+err = matrix_grap(mat2);
+struct matrix *mult = matrix_mult(mat1,mat2);
+err = matrix_grap(mult);
+
+err = sp_matrix_set(sp_mat1, 1, 0, 5);
+err = sp_matrix_set(sp_mat1, 2, 1, 2);
+err = sp_matrix_set(sp_mat1, 2, 1, 3);
+err = sp_matrix_set(sp_mat1, 1, 1, -4);
+err = sp_matrix_set(sp_mat1, 0, 0, 6);
+err = sp_matrix_set(sp_mat1, 0, 0, -9);
+err = sp_matrix_set(sp_mat1, 1, 1, 7);
+
+err = sp_matrix_set(sp_mat2, 1, 3, 1);
+err = sp_matrix_set(sp_mat2, 0, 0, 2);
+err = sp_matrix_set(sp_mat2, 1, 2, -3);
+err = sp_matrix_set(sp_mat2, 0, 3, 4);
+err = sp_matrix_set(sp_mat2, 0, 2, -5);
+err = sp_matrix_set(sp_mat2, 0, 1, 6);
+err = sp_matrix_set(sp_mat2, 1, 0, -7);
+
+err = sp_matrix_grap(sp_mat1);
+err = sp_matrix_grap(sp_mat2);
+struct sp_matrix *sp_mult = sp_matrix_mult(sp_mat1,sp_mat2);
+err = sp_matrix_grap(sp_mult);
 */
 
 void main() 
@@ -126,62 +181,29 @@ void main()
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
 	struct sp_matrix *sp_mat2 = sp_matrix_init(0.01, 2, 4);
 
-	struct matrix *mat3 = matrix_init(3, 3);
-	struct matrix *mat4 = matrix_init(2, 4);
-	struct matrix *res = matrix_mult(mat3, mat4);
-	if (res == NULL)
-	{
-		printf("Ok \n");
-	}
 	struct sp_matrix *sp_mat3 = sp_matrix_init(0.01, 4, 3);
 	struct sp_matrix *sp_mat4 = sp_matrix_init(0.01, 2, 4);
-	struct sp_matrix *sp_res = sp_matrix_mult(sp_mat3, sp_mat4);
-	if (sp_res == NULL)
+	struct sp_matrix *sp_res1 = sp_matrix_mult(sp_mat3, sp_mat4);
+	if (sp_res1 == NULL)
+	{
+		printf("Ok1 \n");
+	}
+
+	struct sp_matrix *sp_mat5 = sp_matrix_init(0.01, 4, 1);
+	struct sp_matrix *sp_mat6 = sp_matrix_init(0.01, 1, 5);
+	struct sp_matrix *sp_res2 = sp_matrix_mult(sp_mat5, sp_mat6);
+	if (sp_res2 == NULL)
 	{
 		printf("Ok2 \n");
 	}
 
-	err = matrix_set(mat1, 1, 0, 5);
-	err = matrix_set(mat1, 1, 1, 2);
-	err = matrix_set(mat1, 2, 1, 3);
-	err = matrix_set(mat1, 2, 1, -4);
-	err = matrix_set(mat1, 0, 0, 6);
-	err = matrix_set(mat1, 0, 1, -9);
-	err = matrix_set(mat1, 1, 0, 7);
-
-	err = matrix_set(mat2, 1, 3, 1);
-	err = matrix_set(mat2, 0, 0, 2);
-	err = matrix_set(mat2, 1, 2, -3);
-	err = matrix_set(mat2, 0, 3, 4);
-	err = matrix_set(mat2, 0, 2, -5);
-	err = matrix_set(mat2, 0, 1, 6);
-	err = matrix_set(mat2, 1, 0, -7);
-
-	err = matrix_grap(mat1);
-	err = matrix_grap(mat2);
-	struct matrix *mult = matrix_mult(mat1,mat2);
-	err = matrix_grap(mult);
-
-	err = sp_matrix_set(sp_mat1, 1, 0, 5);
-	err = sp_matrix_set(sp_mat1, 2, 1, 2);
-	err = sp_matrix_set(sp_mat1, 2, 1, 3);
-	err = sp_matrix_set(sp_mat1, 1, 1, -4);
-	err = sp_matrix_set(sp_mat1, 0, 0, 6);
-	err = sp_matrix_set(sp_mat1, 0, 0, -9);
-	err = sp_matrix_set(sp_mat1, 1, 1, 7);
-
-	err = sp_matrix_set(sp_mat2, 1, 3, 1);
-	err = sp_matrix_set(sp_mat2, 0, 0, 2);
-	err = sp_matrix_set(sp_mat2, 1, 2, -3);
-	err = sp_matrix_set(sp_mat2, 0, 3, 4);
-	err = sp_matrix_set(sp_mat2, 0, 2, -5);
-	err = sp_matrix_set(sp_mat2, 0, 1, 6);
-	err = sp_matrix_set(sp_mat2, 1, 0, -7);
-
-	err = sp_matrix_grap(sp_mat1);
-	err = sp_matrix_grap(sp_mat2);
-	struct sp_matrix *sp_mult = sp_matrix_mult(sp_mat1,sp_mat2);
-	err = sp_matrix_grap(sp_mult);
+	struct sp_matrix *sp_mat7 = sp_matrix_init(0.01, 3, 2);
+	struct sp_matrix *sp_mat8 = sp_matrix_init(0.01, 1, 4);
+	struct sp_matrix *sp_res3 = sp_matrix_mult(sp_mat7, sp_mat8);
+	if (sp_res3 == NULL)
+	{
+		printf("Ok3 \n");
+	}
 
 	matrix_free(mat1);
 	matrix_free(mat2);
@@ -975,7 +997,7 @@ struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 
 struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_matrix *m2)
 {
-	if (m2->nlines != m1->ncols)
+	if (m1->ncols != m2->nlines)
 	{
 		printf("Ok1 \n");
 		return NULL;
