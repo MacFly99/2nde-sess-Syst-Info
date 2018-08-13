@@ -66,6 +66,32 @@ err = sp_matrix_grap(result);
 */
 
 /* TEST TRANSPOSE
+err = matrix_set(mat1, 1, 2, 5);
+err = matrix_set(mat1, 3, 2, 2);
+err = matrix_set(mat1, 2, 1, 3);
+err = matrix_set(mat1, 3, 1, -4);
+err = matrix_set(mat1, 0, 0, 6);
+err = matrix_set(mat1, 0, 3, -9);
+err = matrix_set(mat1, 1, 3, 7);
+
+err = matrix_set(mat2, 1, 3, 1);
+err = matrix_set(mat2, 0, 0, 2);
+err = matrix_set(mat2, 1, 2, -3);
+err = matrix_set(mat2, 0, 3, 4);
+err = matrix_set(mat2, 0, 2, -5);
+err = matrix_set(mat2, 0, 1, 6);
+err = matrix_set(mat2, 1, 0, -7);
+
+err = matrix_grap(mat1);
+struct matrix *transp = matrix_transpose(mat1);
+err = matrix_grap(transp);
+
+err = matrix_grap(mat2);
+transp = matrix_transpose(mat2);
+err = matrix_grap(transp);
+*/
+
+/* TEST SP TRANSPOSE
 
 */
 
@@ -76,31 +102,31 @@ void main()
 	struct matrix *mat1 = matrix_init(4, 4);
 	struct matrix *mat2 = matrix_init(2, 4);
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
-	struct sp_matrix *sp_mat2 = sp_matrix_init(0.01, 4, 4);
+	struct sp_matrix *sp_mat2 = sp_matrix_init(0.01, 2, 4);
 
-	err = matrix_set(mat1, 1, 2, 5);
-	err = matrix_set(mat1, 3, 2, 2);
-	err = matrix_set(mat1, 2, 1, 3);
-	err = matrix_set(mat1, 3, 1, -4);
-	err = matrix_set(mat1, 0, 0, 6);
-	err = matrix_set(mat1, 0, 3, -9);
-	err = matrix_set(mat1, 1, 3, 7);
+	err = sp_matrix_set(sp_mat1, 1, 2, 5);
+	err = sp_matrix_set(sp_mat1, 3, 2, 2);
+	err = sp_matrix_set(sp_mat1, 2, 1, 3);
+	err = sp_matrix_set(sp_mat1, 3, 1, -4);
+	err = sp_matrix_set(sp_mat1, 0, 0, 6);
+	err = sp_matrix_set(sp_mat1, 0, 3, -9);
+	err = sp_matrix_set(sp_mat1, 1, 3, 7);
 
-	err = matrix_set(mat2, 1, 3, 1);
-	err = matrix_set(mat2, 0, 0, 2);
-	err = matrix_set(mat2, 1, 2, -3);
-	err = matrix_set(mat2, 0, 3, 4);
-	err = matrix_set(mat2, 0, 2, -5);
-	err = matrix_set(mat2, 0, 1, 6);
-	err = matrix_set(mat2, 1, 0, -7);
+	err = sp_matrix_set(sp_mat2, 1, 3, 1);
+	err = sp_matrix_set(sp_mat2, 0, 0, 2);
+	err = sp_matrix_set(sp_mat2, 1, 2, -3);
+	err = sp_matrix_set(sp_mat2, 0, 3, 4);
+	err = sp_matrix_set(sp_mat2, 0, 2, -5);
+	err = sp_matrix_set(sp_mat2, 0, 1, 6);
+	err = sp_matrix_set(sp_mat2, 1, 0, -7);
 
-	err = matrix_grap(mat1);
-	struct matrix transp = matrix_transpose(mat1);
-	err = matrix_grap(transp);
+	err = sp_matrix_grap(sp_mat1);
+	struct sp_matrix *transp = sp_matrix_transpose(sp_mat1);
+	err = sp_matrix_grap(transp);
 
-	err = matrix_grap(mat2);
-	transp = matrix_transpose(mat2);
-	err = matrix_grap(transp);
+	err = sp_matrix_grap(sp_mat2);
+	transp = sp_matrix_transpose(sp_mat2);
+	err = sp_matrix_grap(transp);
 
 	matrix_free(mat1);
 	matrix_free(mat2);
