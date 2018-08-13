@@ -133,9 +133,9 @@ void main()
 	{
 		printf("Caca1\n");
 	}
-	struct matrix *sp_mat3 = matrix_init(4, 3);
-	struct matrix *sp_mat4 = matrix_init(2, 4);
-	struct matrix *sp_res = matrix_mult(sp_mat3, sp_mat4);
+	struct sp_matrix *sp_mat3 = sp_matrix_init(4, 3);
+	struct sp_matrix *sp_mat4 = sp_matrix_init(2, 4);
+	struct sp_matrix *sp_res = matrix_mult(sp_mat3, sp_mat4);
 	if (sp_res != NULL)
 	{
 		printf("Caca2\n");
@@ -975,12 +975,15 @@ struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 
 struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_matrix *m2)
 {
+	printf("0 \n");
 	if (m1->ncols != m2->nlines)
 	{
+		printf("Ok1 \n");
 		return NULL;
 	}
 
 	double prec;
+	printf("1 \n");
 	if (m1->precision < m2->precision)
 	{
 		prec = m1->precision;
@@ -990,14 +993,18 @@ struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_mat
 		prec = m2->precision;
 	}
 
+	printf("2 \n");
 	struct sp_matrix *mat = sp_matrix_init(prec,m1->nlines, m2->ncols);
 
+	printf("3 \n");
 	int i;
 	for (i = 0; i < m1->nlines; i++)
 	{
 		int j;
 		for (j = 0; j < m2->ncols; j++)
 		{
+
+			printf("%d %d \n",i,j);
 			int k;
 			double res = 0;
 			for (k = 0; k < m1->ncols; k++)
@@ -1015,6 +1022,8 @@ struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_mat
 
 		}
 	}
+
+	printf("4 \n");
 	return mat;
 }
 
