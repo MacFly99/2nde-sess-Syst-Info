@@ -85,13 +85,35 @@ err = matrix_set(mat2, 1, 0, -7);
 err = matrix_grap(mat1);
 struct matrix *transp = matrix_transpose(mat1);
 err = matrix_grap(transp);
-
 err = matrix_grap(mat2);
 transp = matrix_transpose(mat2);
 err = matrix_grap(transp);
+
+err = sp_matrix_set(sp_mat1, 1, 2, 5);
+err = sp_matrix_set(sp_mat1, 3, 2, 2);
+err = sp_matrix_set(sp_mat1, 2, 1, 3);
+err = sp_matrix_set(sp_mat1, 3, 1, -4);
+err = sp_matrix_set(sp_mat1, 0, 0, 6);
+err = sp_matrix_set(sp_mat1, 0, 3, -9);
+err = sp_matrix_set(sp_mat1, 1, 3, 7);
+
+err = sp_matrix_set(sp_mat2, 1, 3, 1);
+err = sp_matrix_set(sp_mat2, 0, 0, 2);
+err = sp_matrix_set(sp_mat2, 1, 2, -3);
+err = sp_matrix_set(sp_mat2, 0, 3, 4);
+err = sp_matrix_set(sp_mat2, 0, 2, -5);
+err = sp_matrix_set(sp_mat2, 0, 1, 6);
+err = sp_matrix_set(sp_mat2, 1, 0, -7);
+
+err = sp_matrix_grap(sp_mat1);
+struct sp_matrix *sp_transp = sp_matrix_transpose(sp_mat1);
+err = sp_matrix_grap(sp_transp);
+err = sp_matrix_grap(sp_mat2);
+sp_transp = sp_matrix_transpose(sp_mat2);
+err = sp_matrix_grap(sp_transp);
 */
 
-/* TEST SP TRANSPOSE
+/*
 
 */
 
@@ -99,18 +121,54 @@ void main()
 { 
 	int err = 0;
 	printf("Creation des matrices \n");
-	struct matrix *mat1 = matrix_init(4, 4);
+	struct matrix *mat1 = matrix_init(3, 2);
 	struct matrix *mat2 = matrix_init(2, 4);
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
 	struct sp_matrix *sp_mat2 = sp_matrix_init(0.01, 2, 4);
 
-	err = sp_matrix_set(sp_mat1, 1, 2, 5);
-	err = sp_matrix_set(sp_mat1, 3, 2, 2);
+	struct matrix *mat3 = matrix_init(3, 2);
+	struct matrix *mat4 = matrix_init(2, 4);
+	struct matrix *res = matrix_mult(mat3, mat4);
+	if (res != NULL)
+	{
+		printf("Caca1\n");
+	}
+	struct matrix *sp_mat3 = matrix_init(4, 3);
+	struct matrix *sp_mat4 = matrix_init(2, 4);
+	struct matrix *sp_res = matrix_mult(sp_mat3, sp_mat4);
+	if (sp_res != NULL)
+	{
+		printf("Caca2\n");
+	}
+
+	err = matrix_set(mat1, 1, 0, 5);
+	err = matrix_set(mat1, 1, 1, 2);
+	err = matrix_set(mat1, 2, 1, 3);
+	err = matrix_set(mat1, 2, 1, -4);
+	err = matrix_set(mat1, 0, 0, 6);
+	err = matrix_set(mat1, 0, 1, -9);
+	err = matrix_set(mat1, 1, 0, 7);
+
+	err = matrix_set(mat2, 1, 3, 1);
+	err = matrix_set(mat2, 0, 0, 2);
+	err = matrix_set(mat2, 1, 2, -3);
+	err = matrix_set(mat2, 0, 3, 4);
+	err = matrix_set(mat2, 0, 2, -5);
+	err = matrix_set(mat2, 0, 1, 6);
+	err = matrix_set(mat2, 1, 0, -7);
+
+	err = matrix_grap(mat1);
+	err = matrix_grap(mat2);
+	struct matrix *mult = matrix_mult(mat1,mat2);
+	err = matrix_grap(mult);
+
+	err = sp_matrix_set(sp_mat1, 1, 0, 5);
+	err = sp_matrix_set(sp_mat1, 2, 1, 2);
 	err = sp_matrix_set(sp_mat1, 2, 1, 3);
-	err = sp_matrix_set(sp_mat1, 3, 1, -4);
+	err = sp_matrix_set(sp_mat1, 1, 1, -4);
 	err = sp_matrix_set(sp_mat1, 0, 0, 6);
-	err = sp_matrix_set(sp_mat1, 0, 3, -9);
-	err = sp_matrix_set(sp_mat1, 1, 3, 7);
+	err = sp_matrix_set(sp_mat1, 0, 0, -9);
+	err = sp_matrix_set(sp_mat1, 1, 1, 7);
 
 	err = sp_matrix_set(sp_mat2, 1, 3, 1);
 	err = sp_matrix_set(sp_mat2, 0, 0, 2);
@@ -121,12 +179,9 @@ void main()
 	err = sp_matrix_set(sp_mat2, 1, 0, -7);
 
 	err = sp_matrix_grap(sp_mat1);
-	struct sp_matrix *transp = sp_matrix_transpose(sp_mat1);
-	err = sp_matrix_grap(transp);
-
 	err = sp_matrix_grap(sp_mat2);
-	transp = sp_matrix_transpose(sp_mat2);
-	err = sp_matrix_grap(transp);
+	struct sp_matrix *sp_mult = sp_matrix_mult(sp_mat1,sp_mat2);
+	err = sp_matrix_grap(sp_mult);
 
 	matrix_free(mat1);
 	matrix_free(mat2);
