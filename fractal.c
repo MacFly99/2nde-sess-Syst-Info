@@ -129,14 +129,14 @@ void main()
 	struct matrix *mat3 = matrix_init(3, 2);
 	struct matrix *mat4 = matrix_init(2, 4);
 	struct matrix *res = matrix_mult(mat3, mat4);
-	if (res != NULL)
+	if (res == NULL)
 	{
 		printf("Caca1\n");
 	}
 	struct sp_matrix *sp_mat3 = sp_matrix_init(0.01, 4, 3);
 	struct sp_matrix *sp_mat4 = sp_matrix_init(0.01, 2, 4);
 	struct sp_matrix *sp_res = sp_matrix_mult(sp_mat3, sp_mat4);
-	if (sp_res != NULL)
+	if (sp_res == NULL)
 	{
 		printf("Caca2\n");
 	}
@@ -941,10 +941,10 @@ struct sp_matrix *sp_matrix_transpose(const struct sp_matrix *matrix)
 
 struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 {
-	if (m1->ncols != m2->nlines)
+	/*if (m1->ncols != m2->nlines)
 	{
 		return NULL;
-	}
+	}*/
 	struct matrix *mat = matrix_init(m1->nlines, m2->ncols);
 		
 	int i;
@@ -976,11 +976,11 @@ struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_matrix *m2)
 {
 	printf("0 \n");
-	if (m2->nlines != m1->ncols)
+	/*if (m2->nlines != m1->ncols)
 	{
 		printf("Ok1 \n");
 		return NULL;
-	}
+	}*/
 
 	double prec;
 	printf("1 \n");
