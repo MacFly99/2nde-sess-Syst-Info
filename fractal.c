@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "matrix.h"
-/*
+/* TEST GET SP
 err = sp_matrix_set(sp_mat1, 1, 1, 1);
 err = sp_matrix_set(sp_mat1, 1, 3, 2);
 err = sp_matrix_set(sp_mat1, 1, 2, 3);
@@ -16,6 +16,34 @@ printf("\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f",
 	sp_matrix_get(sp_mat1, 3, 0), sp_matrix_get(sp_mat1, 3, 1), sp_matrix_get(sp_mat1, 3, 2), sp_matrix_get(sp_mat1, 3, 3));
 printf("Liberation des matrices\n");
 */
+
+/* TEST ADD
+err = matrix_set(mat1, 1, 2, 5);
+err = matrix_set(mat1, 3, 2, 2);
+err = matrix_set(mat1, 2, 1, 3);
+err = matrix_set(mat1, 3, 1, 4);
+err = matrix_set(mat1, 0, 0, 6);
+err = matrix_set(mat1, 0, 3, 9);
+err = matrix_set(mat1, 1, 3, 7);
+
+err = matrix_set(mat2, 2, 3, 1);
+err = matrix_set(mat2, 3, 0, 2);
+err = matrix_set(mat2, 1, 2, 3);
+err = matrix_set(mat2, 0, 3, 4);
+err = matrix_set(mat2, 0, 2, 5);
+err = matrix_set(mat2, 3, 1, 6);
+err = matrix_set(mat2, 2, 0, 7);
+
+err = matrix_grap(mat1);
+printf("\n");
+err = matrix_grap(mat2);
+struct matrix *result = matrix_add(mat1, mat2);
+err = matrix_grap(result);
+*/
+
+/* TEST ADD SP
+
+*/
 void main() 
 { 
 	int err = 0;
@@ -25,26 +53,26 @@ void main()
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
 	struct sp_matrix *sp_mat2 = sp_matrix_init(0.01, 4, 4);
 
-	err = matrix_set(mat1, 1, 2, 5);
-	err = matrix_set(mat1, 3, 2, 2);
-	err = matrix_set(mat1, 2, 1, 3);
-	err = matrix_set(mat1, 3, 1, 4);
-	err = matrix_set(mat1, 0, 0, 6);
-	err = matrix_set(mat1, 0, 3, 9);
-	err = matrix_set(mat1, 1, 3, 7);
+	err = sp_matrix_set(sp_mat1, 1, 2, 5);
+	err = sp_matrix_set(sp_mat1, 3, 2, 2);
+	err = sp_matrix_set(sp_mat1, 2, 1, 3);
+	err = sp_matrix_set(sp_mat1, 3, 1, 4);
+	err = sp_matrix_set(sp_mat1, 0, 0, 6);
+	err = sp_matrix_set(sp_mat1, 0, 3, 9);
+	err = sp_matrix_set(sp_mat1, 1, 3, 7);
 
-	err = matrix_set(mat2, 2, 3, 1);
-	err = matrix_set(mat2, 3, 0, 2);
-	err = matrix_set(mat2, 1, 2, 3);
-	err = matrix_set(mat2, 0, 3, 4);
-	err = matrix_set(mat2, 0, 2, 5);
-	err = matrix_set(mat2, 3, 1, 6);
-	err = matrix_set(mat2, 2, 0, 7);
+	err = sp_matrix_set(sp_mat2, 2, 3, 1);
+	err = sp_matrix_set(sp_mat2, 3, 0, 2);
+	err = sp_matrix_set(sp_mat2, 1, 2, 3);
+	err = sp_matrix_set(sp_mat2, 0, 3, 4);
+	err = sp_matrix_set(sp_mat2, 0, 2, 5);
+	err = sp_matrix_set(sp_mat2, 3, 1, 6);
+	err = sp_matrix_set(sp_mat2, 2, 0, 7);
 
-	err = matrix_grap(mat1);
+	err = sp_matrix_grap(sp_mat1);
 	printf("\n");
-	err = matrix_grap(mat2);
-	struct matrix *result = matrix_add(mat1, mat2);
+	err = sp_matrix_grap(sp_mat2);
+	struct sp_matrix *result = matrix_add(sp_mat1, sp_mat2);
 	err = matrix_grap(result);
 
 	matrix_free(mat1);
