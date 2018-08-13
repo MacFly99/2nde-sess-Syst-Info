@@ -941,7 +941,7 @@ struct sp_matrix *sp_matrix_transpose(const struct sp_matrix *matrix)
 
 struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 {
-	if (m1->ncols == m2->nlines)
+	if (m1->ncols != m2->nlines)
 	{
 		return NULL;
 	}
@@ -975,7 +975,7 @@ struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 
 struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_matrix *m2)
 {
-	if (m2->nlines == m1->ncols)
+	if (m2->nlines != m1->ncols)
 	{
 		printf("Ok1 \n");
 		return NULL;
