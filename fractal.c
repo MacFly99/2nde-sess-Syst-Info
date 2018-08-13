@@ -133,9 +133,9 @@ void main()
 	{
 		printf("Caca1\n");
 	}
-	struct sp_matrix *sp_mat3 = sp_matrix_init(4, 3);
-	struct sp_matrix *sp_mat4 = sp_matrix_init(2, 4);
-	struct sp_matrix *sp_res = matrix_mult(sp_mat3, sp_mat4);
+	struct sp_matrix *sp_mat3 = sp_matrix_init(0.01, 4, 3);
+	struct sp_matrix *sp_mat4 = sp_matrix_init(0.01, 2, 4);
+	struct sp_matrix *sp_res = sp_matrix_mult(sp_mat3, sp_mat4);
 	if (sp_res != NULL)
 	{
 		printf("Caca2\n");
