@@ -126,19 +126,19 @@ void main()
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
 	struct sp_matrix *sp_mat2 = sp_matrix_init(0.01, 2, 4);
 
-	struct matrix *mat3 = matrix_init(3, 2);
+	struct matrix *mat3 = matrix_init(3, 3);
 	struct matrix *mat4 = matrix_init(2, 4);
 	struct matrix *res = matrix_mult(mat3, mat4);
 	if (res == NULL)
 	{
-		printf("Caca1\n");
+		printf("Ok \n");
 	}
 	struct sp_matrix *sp_mat3 = sp_matrix_init(0.01, 4, 3);
 	struct sp_matrix *sp_mat4 = sp_matrix_init(0.01, 2, 4);
 	struct sp_matrix *sp_res = sp_matrix_mult(sp_mat3, sp_mat4);
 	if (sp_res == NULL)
 	{
-		printf("Caca2\n");
+		printf("Ok2 \n");
 	}
 
 	err = matrix_set(mat1, 1, 0, 5);
@@ -941,10 +941,10 @@ struct sp_matrix *sp_matrix_transpose(const struct sp_matrix *matrix)
 
 struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 {
-	/*if (m1->ncols != m2->nlines)
+	if (m1->ncols == m2->nlines)
 	{
 		return NULL;
-	}*/
+	}
 	struct matrix *mat = matrix_init(m1->nlines, m2->ncols);
 		
 	int i;
@@ -975,15 +975,13 @@ struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 
 struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_matrix *m2)
 {
-	printf("0 \n");
-	/*if (m2->nlines != m1->ncols)
+	if (m2->nlines == m1->ncols)
 	{
 		printf("Ok1 \n");
 		return NULL;
-	}*/
+	}
 
 	double prec;
-	printf("1 \n");
 	if (m1->precision < m2->precision)
 	{
 		prec = m1->precision;
@@ -993,18 +991,14 @@ struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_mat
 		prec = m2->precision;
 	}
 
-	printf("2 \n");
 	struct sp_matrix *mat = sp_matrix_init(prec,m1->nlines, m2->ncols);
 
-	printf("3 \n");
 	int i;
 	for (i = 0; i < m1->nlines; i++)
 	{
 		int j;
 		for (j = 0; j < m2->ncols; j++)
 		{
-
-			printf("%d %d \n",i,j);
 			int k;
 			double res = 0;
 			for (k = 0; k < m1->ncols; k++)
@@ -1019,11 +1013,9 @@ struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_mat
 					return NULL;
 				}
 			}
-
 		}
 	}
 
-	printf("4 \n");
 	return mat;
 }
 
