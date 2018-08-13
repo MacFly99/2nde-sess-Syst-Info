@@ -976,7 +976,7 @@ struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_matrix *m2)
 {
 	printf("0 \n");
-	if (m1->ncols != m2->nlines)
+	if (m2->nlines != m1->ncols)
 	{
 		printf("Ok1 \n");
 		return NULL;
