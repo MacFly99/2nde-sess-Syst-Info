@@ -230,8 +230,8 @@ void main()
 	struct sp_matrix *sp_mat3 = sp_matrix_load("mat1");
 	struct sp_matrix *sp_mat4 = sp_matrix_load("mat2");
 	err = sp_matrix_grap(sp_mat1);
-	err = sp_matrix_grap(sp_mat2);
 	err = sp_matrix_grap(sp_mat3);
+	err = sp_matrix_grap(sp_mat2);
 	err = sp_matrix_grap(sp_mat4);
 
 	//matrix_free(mat1);
@@ -1153,13 +1153,15 @@ int sp_matrix_save(const struct sp_matrix *matrix, char *path)
 	FILE *fi = fopen(path, "w");
 	if (fi == NULL)
 	{
+		printf("1\n");
 		return -1;
 	}
 
-	fprintf(fi, "%d %d %f", matrix->nlines, matrix->ncols, matrix->precision);
+	fprintf(fi, "%d %d %f ", matrix->nlines, matrix->ncols, matrix->precision);
 	
 	if (matrix->lines == NULL)
 	{
+		printf("2\n");
 		fclose(fi);
 		return 0;
 	}
@@ -1170,11 +1172,13 @@ int sp_matrix_save(const struct sp_matrix *matrix, char *path)
 		struct elem *pointeurCo = pointeurLi->elems;
 		while (pointeurCo != NULL)
 		{
-			fprintf(fi, "%d %d %f", pointeurLi->i, pointeurCo->j, pointeurCo->value);
+			fprintf(fi, "%d %d %f ", pointeurLi->i, pointeurCo->j, pointeurCo->value);
 			pointeurCo = pointeurCo->next;
 		}
 		pointeurLi = pointeurLi->next;
 	}
+	printf("3\n");
+	fclose(fi);
 	return 0;
 }
 
