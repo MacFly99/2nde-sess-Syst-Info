@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "matrix.h"
+
 /* TEST GET SP
 err = sp_matrix_set(sp_mat1, 1, 1, 1);
 err = sp_matrix_set(sp_mat1, 1, 3, 2);
@@ -205,14 +206,10 @@ void main()
 	err = matrix_save(mat2, "mat2");
 	struct matrix *mat3 = matrix_load("mat1");
 	err = matrix_grap(mat1);
-	if (mat3 == NULL)
-	{
-		printf("Caca\n");
-	}
-	else
-	{
-		err = matrix_grap(mat3);
-	}
+	err = matrix_grap(mat3);
+	struct matrix *mat4 = matrix_load("mat2");
+	err = matrix_grap(mat2);
+	err = matrix_grap(mat4);
 
 	matrix_free(mat1);
 	matrix_free(mat2);
@@ -1225,7 +1222,7 @@ struct sp_matrix *sp_matrix_load(char *path)
 	{
 		int i, j;
 		double val;
-		flag = fscanf(fi, "%d %d %f", i, j, val);
+		flag = fscanf(fi, "%d %d %lf", &i, &j, &val);
 		int err = sp_matrix_set(mat, i, j, val);
 		if (err)
 		{
