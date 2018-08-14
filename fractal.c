@@ -1120,7 +1120,7 @@ int matrix_save(const struct matrix *matrix, char *path)
 		int j;
 		for (j = 0; j < matrix->ncols; j++)
 		{
-			fprintf(fi, "%f", matrix->elems[i][j]);
+			fprintf(fi, "%f ", matrix->elems[i][j]);
 		}
 	}
 	
@@ -1186,7 +1186,7 @@ struct matrix *matrix_load(char *path)
 		{
 			int res2;
 			double val;
-			res2 = fscanf(fi, "%f", &val);
+			res2 = fscanf(fi, "%f ", &val);
 			printf("%d %d %f\n", i, j,val);
 			if (res2 != 1)
 			{
