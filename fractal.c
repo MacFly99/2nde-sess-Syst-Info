@@ -205,8 +205,14 @@ void main()
 	err = matrix_save(mat2, "mat2");
 	struct matrix *mat3 = matrix_load("mat1");
 	err = matrix_grap(mat1);
-	err = matrix_grap(mat3);
-
+	if (mat3 == NULL)
+	{
+		printf("Caca");
+	}
+	else
+	{
+		err = matrix_grap(mat3);
+	}
 
 	matrix_free(mat1);
 	matrix_free(mat2);
@@ -1159,12 +1165,14 @@ struct matrix *matrix_load(char *path)
 	FILE *fi = fopen(path, "r");
 	if (fi == NULL)
 	{
+		printf("1\n");
 		return NULL;
 	}
 	int res, nlines, ncols;
 	res = fscanf(fi, "%d %d", &nlines, &ncols);
 	if (res < 2)
 	{
+		printf("2\n");
 		return NULL;
 	}
 	struct matrix *mat = matrix_init(nlines,ncols);
@@ -1180,15 +1188,18 @@ struct matrix *matrix_load(char *path)
 			res2 = fscanf(fi, "%f", &val);
 			if (res2 != 1)
 			{
+				printf("3\n");
 				return NULL;
 			}
 			int err= matrix_set(mat, i, j, val);
 			if (err)
 			{
+				printf("4\n");
 				return NULL;
 			}
 		}
 	}
+	printf("Ok\n");
 	return mat;
 }
 
