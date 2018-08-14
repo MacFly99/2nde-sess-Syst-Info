@@ -207,7 +207,7 @@ void main()
 	err = matrix_grap(mat1);
 	if (mat3 == NULL)
 	{
-		printf("Caca");
+		printf("Caca\n");
 	}
 	else
 	{
@@ -1177,12 +1177,14 @@ struct matrix *matrix_load(char *path)
 	}
 	struct matrix *mat = matrix_init(nlines,ncols);
 
+	printf("%d %d \n", nlines, ncols);
 	int i;
 	for (i = 0; i < nlines; i++)
 	{
 		int j;
 		for (j = 0; j < ncols; j++)
 		{
+			printf("%d %d\n",i,j);
 			int res2;
 			double val;
 			res2 = fscanf(fi, "%f", &val);
