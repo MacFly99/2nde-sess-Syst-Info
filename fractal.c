@@ -1186,7 +1186,7 @@ struct matrix *matrix_load(char *path)
 		{
 			int res2;
 			double val;
-			res2 = fscanf(fi, "%f ", &val);
+			res2 = fscanf(fi, "%lf ", &val);
 			printf("%d %d %f\n", i, j,val);
 			if (res2 != 1)
 			{
