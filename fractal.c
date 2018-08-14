@@ -201,8 +201,12 @@ void main()
 	err = matrix_set(mat2, 0, 1, 6);
 	err = matrix_set(mat2, 1, 0, -7);
 
-	err = sp_matrix_save(mat1, "mat1");
-	err = sp_matrix_save(mat2, "mat2");
+	err = matrix_save(mat1, "mat1");
+	err = matrix_save(mat2, "mat2");
+	struct matrix *mat3 = matrix_load("mat1");
+	err = matrix_grap(mat1);
+	err = matrix_grap(mat3);
+
 
 	matrix_free(mat1);
 	matrix_free(mat2);
