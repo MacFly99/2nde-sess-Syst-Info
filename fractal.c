@@ -1237,13 +1237,24 @@ struct sp_matrix *sp_matrix_load(char *path)
 		return NULL;
 	}
 	struct sp_matrix *mat = sp_matrix_init(prec, nlines, ncols);
+	int derI = -1;
+	int derJ = -1;
 	int flag = 1;
 	while (flag)
 	{
 		int i, j;
 		double val;
 		flag = fscanf(fi, "%d %d %lf", &i, &j, &val);
-		printf("%d %d %f", i, j, val);
+		if ((derI == i && derJ == j) || flag)
+		{
+			flag = 0;
+		}
+		else
+		{
+			derI = i;
+			derJ = j;
+		}
+		printf("%d %d %f\n", i, j, val);
 		int err = sp_matrix_set(mat, i, j, val);
 		if (err)
 		{
