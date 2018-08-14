@@ -1169,7 +1169,7 @@ struct matrix *matrix_load(char *path)
 		return NULL;
 	}
 	int res, nlines, ncols;
-	res = fscanf(fi, "%d %d\n", &nlines, &ncols);
+	res = fscanf(fi, "%d %d", &nlines, &ncols);
 	if (res < 2)
 	{
 		printf("2\n");
@@ -1177,7 +1177,7 @@ struct matrix *matrix_load(char *path)
 	}
 	struct matrix *mat = matrix_init(nlines,ncols);
 
-	printf("%d %d \n", nlines, ncols);
+	printf("%d %d\n", nlines, ncols);
 	int i;
 	for (i = 0; i < nlines; i++)
 	{
