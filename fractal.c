@@ -1184,10 +1184,10 @@ struct matrix *matrix_load(char *path)
 		int j;
 		for (j = 0; j < ncols; j++)
 		{
-			printf("%d %d\n",i,j);
 			int res2;
 			double val;
 			res2 = fscanf(fi, "%f", &val);
+			printf("%d %d %f\n", i, j,val);
 			if (res2 != 1)
 			{
 				printf("3\n");
