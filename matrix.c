@@ -278,7 +278,6 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 
 							return 0;
 						}
-						return -2;
 					}
 					else
 					{
@@ -467,7 +466,6 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 
 							return 0;
 						}
-						return -3;
 					}
 					else
 					{
@@ -618,7 +616,7 @@ int sp_matrix_set(struct sp_matrix *matrix, unsigned int i, unsigned int j, doub
 		}
 
 	}
-	return -4;
+	return -1;
 }
 
 // RECUPERATION DE LA VALEUR D'UN ELEMENT D'UNE MATRICE // GET // // //
@@ -770,9 +768,9 @@ struct sp_matrix *sp_matrix_add(const struct sp_matrix *m1, const struct sp_matr
 			double val2 = sp_matrix_get(m2, i, j);
 			double res = val1 + val2;
 			int err = sp_matrix_set(mat, i, j, res);
-			if (err)
+			if (!err)
 			{
-				//return NULL;
+				return NULL;
 			}
 		}
 	}
