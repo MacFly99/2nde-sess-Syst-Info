@@ -141,8 +141,6 @@ void sp_matrix_free(struct sp_matrix *matrix)
 			free(nextPointeurCo);
 		}
 		free(pointeurLi);
-		pointeurLi = nextPointeurLi;
-		nextPointeurLi = nextPointeurLi->next;
 		//On libere finalement la derniere ligne, liberee de ses elements
 		free(nextPointeurLi);
 	}
