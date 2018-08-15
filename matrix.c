@@ -704,6 +704,10 @@ struct matrix *matrix_add(const struct matrix *m1, const struct matrix *m2)
 		return NULL;
 	}
 	struct matrix *mat = matrix_init(m1->nlines, m2->ncols); //On cree la nouvelle matrice, le resultat de l'addition.
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	int i;
 	for (i = 0; i < (int)m1->nlines; i++)
 	{
@@ -743,6 +747,10 @@ struct sp_matrix *sp_matrix_add(const struct sp_matrix *m1, const struct sp_matr
 	}
 
 	struct sp_matrix *mat = sp_matrix_init(prec, m1->nlines, m2->ncols);//On cree la nouvelle matrice, le resultat de l'addition.
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	int i;
 	for (i = 0; i < (int)m1->nlines; i++)
 	{
@@ -769,6 +777,10 @@ struct sp_matrix *sp_matrix_add(const struct sp_matrix *m1, const struct sp_matr
 struct matrix *matrix_transpose(const struct matrix *matrix)
 {
 	struct matrix *mat = matrix_init(matrix->ncols, matrix->nlines); //On cree la nouvelle matrice, avec les valeurs de nlines et ncols inversees de la matrice entree en argument.
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	int i;
 	for (i = 0; i < (int)matrix->nlines; i++)
 	{
@@ -791,6 +803,10 @@ struct matrix *matrix_transpose(const struct matrix *matrix)
 struct sp_matrix *sp_matrix_transpose(const struct sp_matrix *matrix)
 {
 	struct sp_matrix *mat = sp_matrix_init(matrix->precision, matrix->ncols, matrix->nlines);//On cree la nouvelle matrice, avec les valeurs de nlines et ncols inversees de la matrice entree en argument.
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	int i;
 	for (i = 0; i < (int)matrix->nlines; i++)
 	{
@@ -819,7 +835,10 @@ struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 		return NULL;
 	}
 	struct matrix *mat = matrix_init(m1->nlines, m2->ncols); // On cree la nouvelle matrice avec le nombre de ligne de la premiere matrice pour les lignes, et le nombre de colonnes de la seconde matrice pour les colonnes.
-
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	int i;
 	for (i = 0; i < (int)m1->nlines; i++)
 	{
@@ -867,7 +886,10 @@ struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_mat
 	}
 
 	struct sp_matrix *mat = sp_matrix_init(prec, m1->nlines, m2->ncols);// On cree la nouvelle matrice avec le nombre de ligne de la premiere matrice pour les lignes, et le nombre de colonnes de la seconde matrice pour les colonnes.
-
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	int i;
 	for (i = 0; i < (int)m1->nlines; i++)
 	{
@@ -901,7 +923,10 @@ struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_mat
 struct sp_matrix *matrix_to_sp_matrix(const struct matrix *matrix, double precision)
 {
 	struct sp_matrix *mat = sp_matrix_init(precision, matrix->nlines, matrix->ncols); //On cree la matrice creuse avec le meme nombre de lignes et de colonnes que la matrice a convertir.
-
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	int i;
 	for (i = 0; i < (int)matrix->nlines; i++)
 	{
@@ -925,7 +950,10 @@ struct sp_matrix *matrix_to_sp_matrix(const struct matrix *matrix, double precis
 struct matrix *sp_matrix_to_matrix(const struct sp_matrix *matrix)
 {
 	struct matrix *mat = matrix_init(matrix->nlines, matrix->ncols);//On cree la matrice avec le meme nombre de lignes et de colonnes que la matrice a convertir.
-
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	if (matrix->lines == NULL) //Si la matrice a convertir est nulle, on retourne directement la matrice.
 	{
 		return mat;
@@ -1032,7 +1060,10 @@ struct matrix *matrix_load(char *path)
 		return NULL;
 	}
 	struct matrix *mat = matrix_init(nlines, ncols);//On cree ensuite la matrice avec les valeures precedement lues.
-
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	int i;
 	for (i = 0; i < nlines; i++)
 	{
@@ -1077,6 +1108,10 @@ struct sp_matrix *sp_matrix_load(char *path)
 		return NULL;
 	}
 	struct sp_matrix *mat = sp_matrix_init(prec, nlines, ncols);//On cree ensuite la matrice avec les valeures precedement lues.
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	int derI = -1;
 	int derJ = -1;
 	int flag = 1;
