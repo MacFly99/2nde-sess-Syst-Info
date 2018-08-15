@@ -124,7 +124,7 @@ void sp_matrix_free(struct sp_matrix *matrix)
 			nextPointeurLi = nextPointeurLi->next;
 		}
 		//Quand la derniere ligne est atteinte, on libere ses elements par la meme methode que precedement (ligne 281).
-		struct elem *pointeurCo = nextPointeurLi->elems;
+		struct elem *pointeurCo = pointeurLi->elems;
 		if (pointeurCo->next == NULL)
 		{
 			free(pointeurCo);
