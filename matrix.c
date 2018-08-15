@@ -768,10 +768,10 @@ struct sp_matrix *sp_matrix_add(const struct sp_matrix *m1, const struct sp_matr
 			double val2 = sp_matrix_get(m2, i, j);
 			double res = val1 + val2;
 			int err = sp_matrix_set(mat, i, j, res);
-			if (!err)
+			/*if (!err)
 			{
 				return NULL;
-			}
+			}*/
 		}
 	}
 	return mat;
