@@ -77,7 +77,8 @@ int main()
 	sp_matrix_free(sp_mat3);
 	sp_matrix_free(sp_mat4);
 	
-	return 1;
+	
+	return err;
 }
 
 /* TEST GET SP
