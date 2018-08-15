@@ -35,6 +35,10 @@ struct sp_matrix *sp_matrix_init(double precision, unsigned int nlines, unsigned
 {
 	//Allocation de la memoire et initialisation des variables selon les arguments.
 	struct sp_matrix *mat = (struct sp_matrix *)malloc(sizeof(struct sp_matrix));
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	mat->precision = precision;
 	mat->nlines = nlines;
 	mat->ncols = ncols;
@@ -756,10 +760,10 @@ struct sp_matrix *sp_matrix_add(const struct sp_matrix *m1, const struct sp_matr
 		return NULL;
 	}
 	int i;
-	for (i = 0; i < (int)m1->nlines; i++)
+	for (i = 0; i < (int)(m1->nlines); i++)
 	{
 		int j;
-		for (j = 0; j < (int)m1->nlines; j++)
+		for (j = 0; j < (int)(m1->nlines); j++)
 		{
 			//On fait une double boucle qui parcourt tous les element, on utilise la fonction get pour chaque element, et on le set dans la nouvelle matrice avec la fonction set.
 			double val1 = sp_matrix_get(m1, i, j);
