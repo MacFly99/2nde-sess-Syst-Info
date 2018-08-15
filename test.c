@@ -42,6 +42,7 @@ int sp_matrix_grap(const struct sp_matrix *mat)
 int main()
 {
 	printf("Tests OK\n");
+<<<<<<< HEAD
 
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
 	struct sp_matrix *sp_mat2 = sp_matrix_init(0.01, 3, 4);
@@ -75,6 +76,8 @@ int main()
 	sp_matrix_free(sp_mat2);
 	sp_matrix_free(sp_mat3);
 	sp_matrix_free(sp_mat4);
+=======
+>>>>>>> 42c055ddc67864bc9d0b7083ef4724a0367a1d6e
 	return 1;
 }
 
