@@ -41,7 +41,7 @@ int sp_matrix_grap(const struct sp_matrix *mat)
 
 int main()
 {
-	printf("Tests OK");
+	printf("Tests OK\n");
 	return 1;
 }
 
