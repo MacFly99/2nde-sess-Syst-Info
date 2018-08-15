@@ -65,22 +65,22 @@ int main()
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
 
 	err = sp_matrix_set(sp_mat1, 1, 2, 5);
-	print("%d \n", err);
+	printf("%d \n", err);
 	err = sp_matrix_grap(sp_mat1);
 	err = sp_matrix_set(sp_mat1, 0, 2, 2);
-	print("%d \n", err);
+	printf("%d \n", err);
 	err = sp_matrix_grap(sp_mat1);
 	err = sp_matrix_set(sp_mat1, 0, 3, 3);
-	print("%d \n", err);
+	printf("%d \n", err);
 	err = sp_matrix_grap(sp_mat1);
 	err = sp_matrix_set(sp_mat1, 0, 3, 6);
-	print("%d \n", err);
+	printf("%d \n", err);
 	err = sp_matrix_grap(sp_mat1);
 	err = sp_matrix_set(sp_mat1, 1, 3, -9);
-	print("%d \n", err);
+	printf("%d \n", err);
 	err = sp_matrix_grap(sp_mat1);
 	err = sp_matrix_set(sp_mat1, 1, 3, 7);
-	print("%d \n", err);
+	printf("%d \n", err);
 	err = sp_matrix_grap(sp_mat1);
 
 
