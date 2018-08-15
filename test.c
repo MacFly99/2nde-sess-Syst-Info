@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "matrix.c"
+#include "matrix.h"
 
 // Fonctions de test qui affiche sur stdOut le contenu de la matrice entree en argument
 
