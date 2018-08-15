@@ -4,6 +4,15 @@
 
 // Fonctions de test qui affiche sur stdOut le contenu de la matrice entree en argument
 
+/* matrix_grap
+*Affiche le contenu d'une matrice sur stdOut
+*
+* @matrix: matrice a afficher
+* @return: -1 si erreur, 0 sinon
+*
+* Préconditions: matrix != NULL
+* Postconditions: matrix est inchangée
+*/
 int matrix_grap(const struct matrix *matrix)
 {
 	int i;
@@ -20,6 +29,15 @@ int matrix_grap(const struct matrix *matrix)
 	return 0;
 }
 
+/* sp_matrix_grap
+*Affiche le contenu d'une matrice creuse sur stdOut
+*
+* @matrix: matrice a afficher
+* @return: -1 si erreur, 0 sinon
+*
+* Préconditions: matrix != NULL
+* Postconditions: matrix est inchangée
+*/
 int sp_matrix_grap(const struct sp_matrix *mat)
 {
 	struct matrix *matrix = sp_matrix_to_matrix(mat);
@@ -45,37 +63,28 @@ int main()
 
 	int err = -1;
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
-	struct sp_matrix *sp_mat2 = sp_matrix_init(0.01, 3, 4);
 
 	err = sp_matrix_set(sp_mat1, 1, 2, 5);
-	err = sp_matrix_set(sp_mat1, 3, 2, 2);
-	err = sp_matrix_set(sp_mat1, 2, 1, 3);
-	err = sp_matrix_set(sp_mat1, 3, 1, -4);
-	err = sp_matrix_set(sp_mat1, 0, 0, 6);
-	err = sp_matrix_set(sp_mat1, 0, 3, -9);
-	err = sp_matrix_set(sp_mat1, 1, 3, 7);
-
-	err = sp_matrix_set(sp_mat2, 1, 3, 1);
-	err = sp_matrix_set(sp_mat2, 0, 0, 2);
-	err = sp_matrix_set(sp_mat2, 2, 2, -3);
-	err = sp_matrix_set(sp_mat2, 2, 3, 4);
-	err = sp_matrix_set(sp_mat2, 0, 2, -5);
-	err = sp_matrix_set(sp_mat2, 0, 1, 6);
-	err = sp_matrix_set(sp_mat2, 1, 0, -7);
-
-	err = sp_matrix_save(sp_mat1, "mat1");
-	err = sp_matrix_save(sp_mat2, "mat2");
-	struct sp_matrix *sp_mat3 = sp_matrix_load("mat1");
-	struct sp_matrix *sp_mat4 = sp_matrix_load("mat2");
+	print("%d \n", err);
 	err = sp_matrix_grap(sp_mat1);
-	err = sp_matrix_grap(sp_mat3);
-	err = sp_matrix_grap(sp_mat2);
-	err = sp_matrix_grap(sp_mat4);
+	err = sp_matrix_set(sp_mat1, 0, 2, 2);
+	print("%d \n", err);
+	err = sp_matrix_grap(sp_mat1);
+	err = sp_matrix_set(sp_mat1, 0, 3, 3);
+	print("%d \n", err);
+	err = sp_matrix_grap(sp_mat1);
+	err = sp_matrix_set(sp_mat1, 0, 3, 6);
+	print("%d \n", err);
+	err = sp_matrix_grap(sp_mat1);
+	err = sp_matrix_set(sp_mat1, 1, 3, -9);
+	print("%d \n", err);
+	err = sp_matrix_grap(sp_mat1);
+	err = sp_matrix_set(sp_mat1, 1, 3, 7);
+	print("%d \n", err);
+	err = sp_matrix_grap(sp_mat1);
+
 
 	sp_matrix_free(sp_mat1);
-	sp_matrix_free(sp_mat2);
-	sp_matrix_free(sp_mat3);
-	sp_matrix_free(sp_mat4);
 	
 	
 	return err;
@@ -280,6 +289,10 @@ err = matrix_grap(mat4);
 */
 
 /* TEST SAVE+LOAD SP
+int err = -1;
+struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
+struct sp_matrix *sp_mat2 = sp_matrix_init(0.01, 3, 4);
+
 err = sp_matrix_set(sp_mat1, 1, 2, 5);
 err = sp_matrix_set(sp_mat1, 3, 2, 2);
 err = sp_matrix_set(sp_mat1, 2, 1, 3);
@@ -304,4 +317,9 @@ err = sp_matrix_grap(sp_mat1);
 err = sp_matrix_grap(sp_mat3);
 err = sp_matrix_grap(sp_mat2);
 err = sp_matrix_grap(sp_mat4);
+
+sp_matrix_free(sp_mat1);
+sp_matrix_free(sp_mat2);
+sp_matrix_free(sp_mat3);
+sp_matrix_free(sp_mat4);
 */
