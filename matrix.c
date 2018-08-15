@@ -11,10 +11,10 @@ err = sp_matrix_set(sp_mat1, 0, 1, 5);
 err = sp_matrix_set(sp_mat1, 0, 3, 6);
 err = sp_matrix_grap(sp_mat1);
 printf("\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f",
-	sp_matrix_get(sp_mat1, 0, 0), sp_matrix_get(sp_mat1, 0, 1), sp_matrix_get(sp_mat1, 0, 2), sp_matrix_get(sp_mat1, 0, 3),
-	sp_matrix_get(sp_mat1, 1, 0), sp_matrix_get(sp_mat1, 1, 1), sp_matrix_get(sp_mat1, 1, 2), sp_matrix_get(sp_mat1, 1, 3),
-	sp_matrix_get(sp_mat1, 2, 0), sp_matrix_get(sp_mat1, 2, 1), sp_matrix_get(sp_mat1, 2, 2), sp_matrix_get(sp_mat1, 2, 3),
-	sp_matrix_get(sp_mat1, 3, 0), sp_matrix_get(sp_mat1, 3, 1), sp_matrix_get(sp_mat1, 3, 2), sp_matrix_get(sp_mat1, 3, 3));
+sp_matrix_get(sp_mat1, 0, 0), sp_matrix_get(sp_mat1, 0, 1), sp_matrix_get(sp_mat1, 0, 2), sp_matrix_get(sp_mat1, 0, 3),
+sp_matrix_get(sp_mat1, 1, 0), sp_matrix_get(sp_mat1, 1, 1), sp_matrix_get(sp_mat1, 1, 2), sp_matrix_get(sp_mat1, 1, 3),
+sp_matrix_get(sp_mat1, 2, 0), sp_matrix_get(sp_mat1, 2, 1), sp_matrix_get(sp_mat1, 2, 2), sp_matrix_get(sp_mat1, 2, 3),
+sp_matrix_get(sp_mat1, 3, 0), sp_matrix_get(sp_mat1, 3, 1), sp_matrix_get(sp_mat1, 3, 2), sp_matrix_get(sp_mat1, 3, 3));
 printf("Liberation des matrices\n");
 */
 
@@ -200,8 +200,8 @@ err = matrix_grap(mat2);
 err = matrix_grap(mat4);
 */
 
-void main() 
-{ 
+void main()
+{
 	int err = 0;
 	printf("Creation des matrices \n");
 	//struct matrix *mat1 = matrix_init(3, 4);
@@ -252,11 +252,11 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 	double ** ele = (double **)malloc(nlines * sizeof(double*));
 	//Initialisation du tableau pour que toutes les valeurs valent 0.
 	int i;
-	for (i = 0; i < nlines; i++)
+	for (i = 0; i < (int)nlines; i++)
 	{
 		*(ele + i) = (double*)malloc(ncols * sizeof(double));
 		int j;
-		for (j = 0; j < ncols; j++)
+		for (j = 0; j < (int)ncols; j++)
 		{
 			ele[i][j] = 0;
 		}
@@ -283,9 +283,9 @@ void matrix_free(struct matrix *matrix)
 {
 	double **ele = matrix->elems;
 	int i;
-	for (i = 0; i < matrix->nlines; i++)
+	for (i = 0; i < (int)matrix->nlines; i++)
 	{
-		free( *(ele + i) );
+		free(*(ele + i));
 	}
 	free(matrix);
 	return;
@@ -888,10 +888,10 @@ struct matrix *matrix_add(const struct matrix *m1, const struct matrix *m2)
 	}
 	struct matrix *mat = matrix_init(m1->nlines, m2->ncols);
 	int i;
-	for (i = 0; i < m1->nlines; i++)
+	for (i = 0; i < (int)m1->nlines; i++)
 	{
 		int j;
-		for (j = 0; j < m1->nlines; j++)
+		for (j = 0; j < (int)m1->nlines; j++)
 		{
 			double val1 = matrix_get(m1, i, j);
 			double val2 = matrix_get(m2, i, j);
@@ -925,10 +925,10 @@ struct sp_matrix *sp_matrix_add(const struct sp_matrix *m1, const struct sp_matr
 
 	struct sp_matrix *mat = sp_matrix_init(prec, m1->nlines, m2->ncols);
 	int i;
-	for (i = 0; i < m1->nlines; i++)
+	for (i = 0; i < (int)m1->nlines; i++)
 	{
 		int j;
-		for (j = 0; j < m1->nlines; j++)
+		for (j = 0; j < (int)m1->nlines; j++)
 		{
 			double val1 = sp_matrix_get(m1, i, j);
 			double val2 = sp_matrix_get(m2, i, j);
@@ -950,10 +950,10 @@ struct matrix *matrix_transpose(const struct matrix *matrix)
 {
 	struct matrix *mat = matrix_init(matrix->ncols, matrix->nlines);
 	int i;
-	for (i = 0; i < matrix->nlines ; i++)
+	for (i = 0; i < (int)matrix->nlines; i++)
 	{
 		int j;
-		for (j = 0; j < matrix->ncols;j++)
+		for (j = 0; j < (int)matrix->ncols; j++)
 		{
 			double val = matrix_get(matrix, i, j);
 
@@ -969,12 +969,12 @@ struct matrix *matrix_transpose(const struct matrix *matrix)
 
 struct sp_matrix *sp_matrix_transpose(const struct sp_matrix *matrix)
 {
-	struct sp_matrix *mat = sp_matrix_init(matrix->precision,matrix->ncols, matrix->nlines);
+	struct sp_matrix *mat = sp_matrix_init(matrix->precision, matrix->ncols, matrix->nlines);
 	int i;
-	for (i = 0; i < matrix->nlines; i++)
+	for (i = 0; i < (int)matrix->nlines; i++)
 	{
 		int j;
-		for (j = 0; j < matrix->ncols; j++)
+		for (j = 0; j < (int)matrix->ncols; j++)
 		{
 			double val = sp_matrix_get(matrix, i, j);
 
@@ -997,16 +997,16 @@ struct matrix *matrix_mult(const struct matrix *m1, const struct matrix *m2)
 		return NULL;
 	}
 	struct matrix *mat = matrix_init(m1->nlines, m2->ncols);
-		
+
 	int i;
-	for (i = 0; i < m1->nlines; i++)
+	for (i = 0; i < (int)m1->nlines; i++)
 	{
 		int j;
-		for (j = 0; j < m2->ncols; j++)
+		for (j = 0; j < (int)m2->ncols; j++)
 		{
 			int k;
 			double res = 0;
-			for (k = 0; k < m1->ncols; k++)
+			for (k = 0; k < (int)m1->ncols; k++)
 			{
 				double prod1 = matrix_get(m1, i, k);
 				double prod2 = matrix_get(m2, k, j);
@@ -1028,7 +1028,6 @@ struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_mat
 {
 	if (m1->ncols != m2->nlines)
 	{
-		printf("Ok1 \n");
 		return NULL;
 	}
 
@@ -1042,17 +1041,17 @@ struct sp_matrix *sp_matrix_mult(const struct sp_matrix *m1, const struct sp_mat
 		prec = m2->precision;
 	}
 
-	struct sp_matrix *mat = sp_matrix_init(prec,m1->nlines, m2->ncols);
+	struct sp_matrix *mat = sp_matrix_init(prec, m1->nlines, m2->ncols);
 
 	int i;
-	for (i = 0; i < m1->nlines; i++)
+	for (i = 0; i < (int)m1->nlines; i++)
 	{
 		int j;
-		for (j = 0; j < m2->ncols; j++)
+		for (j = 0; j < (int)m2->ncols; j++)
 		{
 			int k;
 			double res = 0;
-			for (k = 0; k < m1->ncols; k++)
+			for (k = 0; k < (int)m1->ncols; k++)
 			{
 				double prod1 = sp_matrix_get(m1, i, k);
 				double prod2 = sp_matrix_get(m2, k, j);
@@ -1077,10 +1076,10 @@ struct sp_matrix *matrix_to_sp_matrix(const struct matrix *matrix, double precis
 	struct sp_matrix *mat = sp_matrix_init(precision, matrix->nlines, matrix->ncols);
 
 	int i;
-	for (i = 0; i < matrix->nlines; i++)
+	for (i = 0; i < (int)matrix->nlines; i++)
 	{
 		int j;
-		for (j = 0; j < matrix->ncols; j++)
+		for (j = 0; j < (int)matrix->ncols; j++)
 		{
 			if (matrix->elems[i][j] != 0)
 			{
@@ -1098,12 +1097,12 @@ struct sp_matrix *matrix_to_sp_matrix(const struct matrix *matrix, double precis
 struct matrix *sp_matrix_to_matrix(const struct sp_matrix *matrix)
 {
 	struct matrix *mat = matrix_init(matrix->nlines, matrix->ncols);
-	
+
 	if (matrix->lines == NULL)
 	{
 		return mat;
 	}
-	
+
 	struct line *pointeurLi = matrix->lines;
 	while (pointeurLi != NULL)
 	{
@@ -1135,15 +1134,15 @@ int matrix_save(const struct matrix *matrix, char *path)
 	fprintf(fi, "%d %d ", matrix->nlines, matrix->ncols);
 
 	int i;
-	for (i = 0; i < matrix->nlines; i++)
+	for (i = 0; i < (int)matrix->nlines; i++)
 	{
 		int j;
-		for (j = 0; j < matrix->ncols; j++)
+		for (j = 0; j < (int)matrix->ncols; j++)
 		{
 			fprintf(fi, "%f ", matrix->elems[i][j]);
 		}
 	}
-	
+
 	fclose(fi);
 	return 0;
 }
@@ -1153,15 +1152,13 @@ int sp_matrix_save(const struct sp_matrix *matrix, char *path)
 	FILE *fi = fopen(path, "w");
 	if (fi == NULL)
 	{
-		printf("1\n");
 		return -1;
 	}
 
 	fprintf(fi, "%d %d %f ", matrix->nlines, matrix->ncols, matrix->precision);
-	
+
 	if (matrix->lines == NULL)
 	{
-		printf("2\n");
 		fclose(fi);
 		return 0;
 	}
@@ -1177,7 +1174,6 @@ int sp_matrix_save(const struct sp_matrix *matrix, char *path)
 		}
 		pointeurLi = pointeurLi->next;
 	}
-	printf("3\n");
 	fclose(fi);
 	return 0;
 }
@@ -1197,7 +1193,7 @@ struct matrix *matrix_load(char *path)
 	{
 		return NULL;
 	}
-	struct matrix *mat = matrix_init(nlines,ncols);
+	struct matrix *mat = matrix_init(nlines, ncols);
 
 	int i;
 	for (i = 0; i < nlines; i++)
@@ -1212,7 +1208,7 @@ struct matrix *matrix_load(char *path)
 			{
 				return NULL;
 			}
-			int err= matrix_set(mat, i, j, val);
+			int err = matrix_set(mat, i, j, val);
 			if (err)
 			{
 				return NULL;
@@ -1231,7 +1227,7 @@ struct sp_matrix *sp_matrix_load(char *path)
 	}
 	int res, nlines, ncols;
 	double prec;
-	res = fscanf(fi, "%d %d %f", &nlines, &ncols, &prec);
+	res = fscanf(fi, "%d %d %lf", &nlines, &ncols, &prec);
 	if (res < 3)
 	{
 		return NULL;
@@ -1254,7 +1250,6 @@ struct sp_matrix *sp_matrix_load(char *path)
 			derI = i;
 			derJ = j;
 		}
-		printf("%d %d %f\n", i, j, val);
 		int err = sp_matrix_set(mat, i, j, val);
 		if (err)
 		{
@@ -1269,12 +1264,12 @@ struct sp_matrix *sp_matrix_load(char *path)
 int matrix_grap(const struct matrix *matrix)
 {
 	int i;
-	for (i = 0; i < matrix->nlines; i++)
+	for (i = 0; i < (int)matrix->nlines; i++)
 	{
 		int j;
-		for (j = 0; j < matrix->ncols; j++)
+		for (j = 0; j < (int)matrix->ncols; j++)
 		{
-			printf("%f ", matrix->elems[i][j] );
+			printf("%f ", matrix->elems[i][j]);
 		}
 		printf("\n");
 	}
@@ -1286,10 +1281,10 @@ int sp_matrix_grap(const struct sp_matrix *mat)
 {
 	struct matrix *matrix = sp_matrix_to_matrix(mat);
 	int i;
-	for (i = 0; i < matrix->nlines; i++)
+	for (i = 0; i < (int)matrix->nlines; i++)
 	{
 		int j;
-		for (j = 0; j < matrix->ncols; j++)
+		for (j = 0; j < (int)matrix->ncols; j++)
 		{
 			printf("%f ", matrix->elems[i][j]);
 		}
