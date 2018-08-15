@@ -1,3 +1,0 @@
-J'initialise le tableau à 0 dans init, pour être certain que ce soit bien fait
-Dans set, si la matrice n'existe pas, on ne la crée pas, on met une erreur
-Certaines conditions sont plus contraignantes que nécessaires, notament dans sp_matrix_get, pour être plus sur et car le code est recopié de
