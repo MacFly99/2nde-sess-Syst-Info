@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "matrix.h"
+//#include "matrix.h"
 #include "matrix.c"
 
 //FONCTIONS DE TEST

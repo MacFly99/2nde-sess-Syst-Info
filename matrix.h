@@ -1,4 +1,4 @@
- #ifndef _MATRIX_H
+#ifndef _MATRIX_H
 #define _MATRIX_H
 
 /* struct matrix
@@ -320,9 +320,5 @@ struct matrix *matrix_load (char *path);
  * Postconditions: @path est inchangée
  */
 struct sp_matrix *sp_matrix_load (char *path);
-
-//TEST
-int matrix_grap(const struct matrix *matrix);
-int sp_matrix_grap(const struct sp_matrix *mat);
 
 #endif
