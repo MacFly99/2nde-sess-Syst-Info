@@ -43,6 +43,7 @@ int main()
 {
 	printf("Tests OK\n");
 
+	int err = -1;
 	struct sp_matrix *sp_mat1 = sp_matrix_init(0.01, 4, 4);
 	struct sp_matrix *sp_mat2 = sp_matrix_init(0.01, 3, 4);
 
