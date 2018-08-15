@@ -321,4 +321,8 @@ struct matrix *matrix_load (char *path);
  */
 struct sp_matrix *sp_matrix_load (char *path);
 
+//TEST
+int matrix_grap(const struct matrix *matrix);
+int sp_matrix_grap(const struct sp_matrix *mat);
+
 #endif

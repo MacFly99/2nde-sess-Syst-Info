@@ -200,7 +200,7 @@ err = matrix_grap(mat2);
 err = matrix_grap(mat4);
 */
 
-void main()
+int main()
 {
 	int err = 0;
 	printf("Creation des matrices \n");
@@ -238,7 +238,7 @@ void main()
 	//matrix_free(mat2);
 	sp_matrix_free(sp_mat1);
 	sp_matrix_free(sp_mat2);
-	return;
+	return err;
 }
 
 // CREATION DES MATRICES // INIT // // //
