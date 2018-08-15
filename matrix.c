@@ -8,6 +8,10 @@ struct matrix *matrix_init(unsigned int nlines, unsigned int ncols)
 {
 	//Allocation de la memoire et initialisation des variables selon les arguments.
 	struct matrix *mat = (struct matrix *)malloc(sizeof(struct matrix));
+	if (mat == NULL)
+	{
+		return NULL;
+	}
 	mat->nlines = nlines;
 	mat->ncols = ncols;
 	//Le tableau de double est alloue avec des mallocs pour bien correspondre a la structure matrix.
