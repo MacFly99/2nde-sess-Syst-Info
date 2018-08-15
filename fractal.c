@@ -1245,7 +1245,7 @@ struct sp_matrix *sp_matrix_load(char *path)
 		int i, j;
 		double val;
 		flag = fscanf(fi, "%d %d %lf", &i, &j, &val);
-		if ((derI == i && derJ == j) || flag)
+		if ((derI == i && derJ == j) || !flag)
 		{
 			flag = 0;
 		}
