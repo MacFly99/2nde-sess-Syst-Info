@@ -1,2 +1,2 @@
-test: test.c    
-  gcc matrix -g -Wall -W -Werror -std=gnu99
+test: matrix.c    
+  gcc test matrix.c -g -Wall -W -Werror -std=gnu99
