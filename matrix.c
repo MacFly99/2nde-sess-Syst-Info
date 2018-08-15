@@ -772,7 +772,7 @@ struct sp_matrix *sp_matrix_add(const struct sp_matrix *m1, const struct sp_matr
 			int err = sp_matrix_set(mat, i, j, res);
 			if (err)
 			{
-				return NULL;
+				//return NULL;
 			}
 		}
 	}
